@@ -54,4 +54,32 @@ def leo(request):
 
 
 
+############################################################################################################
+создание URLs config
+
+
+1. в папке horoscope создать файл urls.py:
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('leo', views.leo),
+    path('scorpio', views.scorpio),
+]
+
+2. в файле my_page/urls.py изменить urlpatterns:
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('horoscope/', include("horoscope.urls")),
+]
+
+
+
+
+
+
+
+
 

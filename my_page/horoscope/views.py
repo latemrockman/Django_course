@@ -6,3 +6,6 @@ from django.http import HttpResponse
 
 def leo(request):
     return HttpResponse("знак зодиака Лев")
+
+def scorpio(request):
+    return  HttpResponse("знак зодиака Скорпион")
