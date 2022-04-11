@@ -3,14 +3,6 @@ from django.http import HttpResponse, HttpResponseNotFound
 # Create your views here.
 
 
-
-def leo(request):
-    return HttpResponse("знак зодиака Лев")
-
-def scorpio(request):
-    return HttpResponse("знак зодиака Скорпион")
-
-
 def get_info_about_sign_zodiak(request, sign_zodiak):
     dict_zodiak = {
         "aries"         : "Овен     - 21 марта — 20 апреля",
