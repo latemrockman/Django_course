@@ -89,8 +89,19 @@ urlpatterns = [
  
 
 
+############################################################################################################
+Динамический URL
 
+1. в файле views.py создать функцию:
 
+def get_info_about_sign_zodiak(request, sign_zodiak):
+    return HttpResponse(f'adress - {sign_zodiak}')
 
+2. в файле hproscope/urls.py
 
+urlpatterns = [
+    path('<sign_zodiak>', views.get_info_about_sign_zodiak),
+    #path('leo', views.leo),
+    #path('scorpio', views.scorpio),
+]
 
