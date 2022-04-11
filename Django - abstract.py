@@ -130,3 +130,47 @@ urlpatterns = [
 ############################################################################################################
 Конверторы роутов
 
+1. в файле views меняем функцию, словарь переносим в глобальную область
+
+def get_info_about_sign_zodiak(request, sign_zodiak):
+    description = dict_zodiak.get(sign_zodiak, None)
+
+    if description:
+        return HttpResponse(description)
+    else:
+        return HttpResponseNotFound(f"{sign_zodiak} - неизвестный знак зодиака")
+        
+        
+##  при запросах несуществующего ключа - статус ответа 404 ()
+    при запросах существующего ключа - статус ответа 200
+    
+    этот статус выставляет сам класс HttpResponse (200) и HttpResponseNotFound (404)
+
+
+2. в файле urls:
+
+urlpatterns = [
+    path('16/', views.get_info_about_16),                                       # если ввели 16
+    path('<int:sign_zodiak>/', views.get_info_about_sign_zodiak_by_number),     # если ввели число
+    path('<str:sign_zodiak>/', views.get_info_about_sign_zodiak_by_string),     # если ввели строку
+]
+
+    преобразование роутов идет сверху вниз (перебор списка), тут сначала пробует преобразовать в число, 
+    если это возможно то преобразует, если нет то следующий элемент списка (в строку)
+    
+3. views:
+
+def get_info_about_sign_zodiak_by_number(request, sign_zodiak: int):
+    return HttpResponse(f'это число {sign_zodiak}')
+
+
+def get_info_about_sign_zodiak_by_string(request, sign_zodiak: str):
+    description = dict_zodiak.get(sign_zodiak, None)
+
+    if description:
+        return HttpResponse(description)
+    else:
+        return HttpResponseNotFound(f"{sign_zodiak} - неизвестный знак зодиака")
+        
+def get_info_about_16(request):
+    return HttpResponse(f'This is 16')
