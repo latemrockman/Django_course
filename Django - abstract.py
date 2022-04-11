@@ -174,3 +174,39 @@ def get_info_about_sign_zodiak_by_string(request, sign_zodiak: str):
         
 def get_info_about_16(request):
     return HttpResponse(f'This is 16')
+    
+    
+
+############################################################################################################
+15 Redirect Url в Django. Перенаправление адреса в Django 3
+
+начиная с Python версии 3.7 гарантируется, что пары словаря располагаются в том порядке, в котором они добавлялись
+
+views:
+def get_info_about_sign_zodiak_by_number(request, sign_zodiak: int):
+    zodiacs = list(dict_zodiak)
+    if sign_zodiak > len(zodiacs):
+        return HttpResponseNotFound(f"Был передан неправильный порядковый номер - {sign_zodiak}")
+    else:
+        name_zodiac = zodiacs[sign_zodiak - 1]
+        return HttpResponseRedirect(f"/horoscope/{name_zodiac}")
+
+
+def get_info_about_111(request):
+    return HttpResponseRedirect(f'https://mail.ru/')
+
+
+def get_info_about_555(request):
+    return HttpResponse(f'This is 555')        
+        
+№
+urls:
+urlpatterns = [
+    path('111/', views.get_info_about_111),
+    path('555/', views.get_info_about_555),
+    path('<int:sign_zodiak>/', views.get_info_about_sign_zodiak_by_number),
+    path('<str:sign_zodiak>/', views.get_info_about_sign_zodiak_by_string),
+]
+
+
+

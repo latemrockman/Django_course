@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 # Create your views here.
 
 dict_zodiak = {
@@ -19,7 +19,14 @@ dict_zodiak = {
 
 
 def get_info_about_sign_zodiak_by_number(request, sign_zodiak: int):
-    return HttpResponse(f'это число {sign_zodiak}')
+    zodiacs = list(dict_zodiak)
+    if sign_zodiak > len(zodiacs):
+        return HttpResponseNotFound(f"Был передан неправильный порядковый номер - {sign_zodiak}")
+    else:
+        name_zodiac = zodiacs[sign_zodiak - 1]
+        return HttpResponseRedirect(f"/horoscope/{name_zodiac}")
+
+
 
 
 def get_info_about_sign_zodiak_by_string(request, sign_zodiak: str):
@@ -30,5 +37,9 @@ def get_info_about_sign_zodiak_by_string(request, sign_zodiak: str):
     else:
         return HttpResponseNotFound(f"{sign_zodiak} - неизвестный знак зодиака")
 
-def get_info_about_16(request):
-    return HttpResponse(f'This is 16')
+def get_info_about_111(request):
+    return HttpResponseRedirect(f'https://mail.ru/')
+
+
+def get_info_about_555(request):
+    return HttpResponse(f'This is 555')
