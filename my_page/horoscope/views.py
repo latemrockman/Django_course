@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.urls import reverse
 # Create your views here.
 
 dict_zodiak = {
@@ -17,17 +18,14 @@ dict_zodiak = {
     "pisces": "Рыбы     - 21 февраля — 20 марта",
 }
 
-
 def get_info_about_sign_zodiak_by_number(request, sign_zodiak: int):
     zodiacs = list(dict_zodiak)
     if sign_zodiak > len(zodiacs):
         return HttpResponseNotFound(f"Был передан неправильный порядковый номер - {sign_zodiak}")
-    else:
-        name_zodiac = zodiacs[sign_zodiak - 1]
-        return HttpResponseRedirect(f"/horoscope/{name_zodiac}")
 
-
-
+    name_zodiac = zodiacs[sign_zodiak - 1]
+    redirect_url = reverse("horoscope-name", args=(name_zodiac,))
+    return HttpResponseRedirect(redirect_url)
 
 def get_info_about_sign_zodiak_by_string(request, sign_zodiak: str):
     description = dict_zodiak.get(sign_zodiak, None)
@@ -39,7 +37,6 @@ def get_info_about_sign_zodiak_by_string(request, sign_zodiak: str):
 
 def get_info_about_111(request):
     return HttpResponseRedirect(f'https://mail.ru/')
-
 
 def get_info_about_555(request):
     return HttpResponse(f'This is 555')

@@ -209,4 +209,50 @@ urlpatterns = [
 ]
 
 
+############################################################################################################
+16 Функция reverse
 
+Каждому нашему urlu дать определенное имя (зарегистрировать за ним определенное название и уже ссылаться потом на это название)
+
+urls.py:
+
+1.
+это:
+urlpatterns = [
+    path('111/', views.get_info_about_111),
+    path('555/', views.get_info_about_555),
+    path('<int:sign_zodiak>/', views.get_info_about_sign_zodiak_by_number),
+    path('<str:sign_zodiak>/', views.get_info_about_sign_zodiak_by_string),
+]
+
+заменить на это:
+# добавляем аргемент name - это имя за которым будет зарегистрирован url
+urlpatterns = [
+    path('111/', views.get_info_about_111, name = "horoscope-name"),
+    path('555/', views.get_info_about_555, name = "horoscope-name"),
+    path('<int:sign_zodiak>/', views.get_info_about_sign_zodiak_by_number, name = "horoscope-name"),
+    path('<str:sign_zodiak>/', views.get_info_about_sign_zodiak_by_string, name = "horoscope-name"),
+]
+
+2. импортируем в файл views функцию reverse
+
+from django.urls import reverse
+
+reverse("horoscope-name", args = (nam e_zodiak))
+
+# функция reverse() пытается воссоздать url по имени "horoscope-name". 
+# т.е. она отыскивает где используется path (он используется в horoscope/urls.py в списке urlpatterns)
+# а в этот path мы попадем только когда сработает в файле my_page/urls.py:
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('horoscope/', include("horoscope.urls")),
+]
+
+def get_info_about_sign_zodiak_by_number(request, sign_zodiak: int):
+    zodiacs = list(dict_zodiak)
+    if sign_zodiak > len(zodiacs):
+        return HttpResponseNotFound(f"Был передан неправильный порядковый номер - {sign_zodiak}")
+
+    name_zodiac = zodiacs[sign_zodiak - 1]
+    redirect_url = reverse("horoscope-name", args=(name_zodiac))
+    return HttpResponseRedirect(redirect_url)
