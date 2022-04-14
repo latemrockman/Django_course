@@ -18,6 +18,23 @@ dict_zodiak = {
     "pisces": "Рыбы     - 21 февраля — 20 марта",
 }
 
+
+def index(request):
+    zodiacs = list(dict_zodiak)
+
+    li_elements = ""
+
+    for sign in zodiacs:
+        redirect_path = reverse("horoscope-name", args=[sign])
+        li_elements += f"<li><a href ='{redirect_path}'>{sign.title()}</a></li>"
+    response = f"""
+    <ul>
+        {li_elements}
+    </ul>
+"""
+    return HttpResponse(response)
+
+
 def get_info_about_sign_zodiak_by_number(request, sign_zodiak: int):
     zodiacs = list(dict_zodiak)
     if sign_zodiak > len(zodiacs):
@@ -31,7 +48,7 @@ def get_info_about_sign_zodiak_by_string(request, sign_zodiak: str):
     description = dict_zodiak.get(sign_zodiak, None)
 
     if description:
-        return HttpResponse(description)
+        return HttpResponse(f"<h2>{description}</h2>")
     else:
         return HttpResponseNotFound(f"{sign_zodiak} - неизвестный знак зодиака")
 

@@ -256,3 +256,31 @@ def get_info_about_sign_zodiak_by_number(request, sign_zodiak: int):
     name_zodiac = zodiacs[sign_zodiak - 1]
     redirect_url = reverse("horoscope-name", args=(name_zodiac))
     return HttpResponseRedirect(redirect_url)
+#
+############################################################################################################
+16 Функция reverse
+
+1. в функции def get_info_about_sign_zodiak_by_string(request, sign_zodiak: str) изменяем строку:
+
+return HttpResponse(f"<h2>{description}</h2>")
+
+2. в файле horoscope/urls добавляем путь с пустой строчкой
+
+    path('', views.index),
+#
+3. views:
+
+def index(request):
+    zodiacs = list(dict_zodiak)
+
+    li_elements = ""
+
+    for sign in zodiacs:
+        redirect_path = reverse("horoscope-name", args=[sign])
+        li_elements += f"<li><a href ='{redirect_path}'>{sign.title()}</a></li>"
+    response = f"""
+    <ul>
+        {li_elements}
+    </ul>
+"""
+    return HttpResponse(response)
