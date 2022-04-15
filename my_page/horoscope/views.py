@@ -17,13 +17,15 @@ dict_zodiak = {
     "aquarius": "Водолей  - 21 января — 20 февраля",
     "pisces": "Рыбы     - 21 февраля — 20 марта",
 }
-
-
+types = {
+    "fire"  : ["aries", "leo", "sagittarius"],
+    "earth" : ["taurus", "virgo", "capricorn"],
+    "air"   : ["gemini", "libra", "aquarius"],
+    "water" : ["cancer", "scorpio", "pisces"]
+}
 def index(request):
     zodiacs = list(dict_zodiak)
-
     li_elements = ""
-
     for sign in zodiacs:
         redirect_path = reverse("horoscope-name", args=[sign])
         li_elements += f"<li><a href ='{redirect_path}'>{sign.title()}</a></li>"
@@ -34,19 +36,45 @@ def index(request):
 """
     return HttpResponse(response)
 
+def type_index(request):
+    types_list = list(types)
+    li_types = ""
+    for sign in types_list:
+        redirect_path = reverse("type-name", args=[sign])
+        li_types += f"<li><a href ='{redirect_path}'>{sign}</a> </li>"
+    response = f"""
+        <ul>
+        {li_types}
+    </ul>
+"""
+    return HttpResponse(response)
+
+def get_zodiac_type(request, sign_type: str):
+    list_element = types.get(sign_type, None)
+    if list_element:
+        menu_zodiak = ""
+        for znak in list_element:
+            redirect_path = reverse("horoscope-name", args=[znak])
+            menu_zodiak += f"<li><a href ='{redirect_path}'>{znak}</a></li>"
+        response = f"""
+        <ul>
+            {menu_zodiak}
+        </ul>
+"""
+        return HttpResponse(response)
+    else:
+        return HttpResponseNotFound(f"{sign_type} - неизвестня стихия")
 
 def get_info_about_sign_zodiak_by_number(request, sign_zodiak: int):
     zodiacs = list(dict_zodiak)
     if sign_zodiak > len(zodiacs):
         return HttpResponseNotFound(f"Был передан неправильный порядковый номер - {sign_zodiak}")
-
     name_zodiac = zodiacs[sign_zodiak - 1]
     redirect_url = reverse("horoscope-name", args=(name_zodiac,))
     return HttpResponseRedirect(redirect_url)
 
 def get_info_about_sign_zodiak_by_string(request, sign_zodiak: str):
     description = dict_zodiak.get(sign_zodiak, None)
-
     if description:
         return HttpResponse(f"<h2>{description}</h2>")
     else:
