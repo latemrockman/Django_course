@@ -1,28 +1,47 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
+import datetime
+
 # Create your views here.
 
 dict_zodiak = {
-    "aries": "Овен     - 21 марта — 20 апреля",
-    "taurus": "Телец    - 21 апреля — 20 мая",
-    "gemini": "Близнецы - 21 мая — 21 июня",
-    "cancer": "Рак      - 22 июня — 22 июля",
-    "leo": "Лев      - 23 июля — 23 августа",
-    "virgo": "Дева     - 24 августа — 23 сентября",
-    "libra": "Весы     - 24 сентября — 23 октября",
-    "scorpio": "Скорпион - 24 октября — 22 ноября",
-    "sagittarius": "Стрелец  - 23 ноября — 21 декабря",
-    "capricorn": "Козерог  - 22 декабря — 20 января",
-    "aquarius": "Водолей  - 21 января — 20 февраля",
-    "pisces": "Рыбы     - 21 февраля — 20 марта",
+    "aries"         : "Овен     - 21 марта — 20 апреля",
+    "taurus"        : "Телец    - 21 апреля — 20 мая",
+    "gemini"        : "Близнецы - 21 мая — 21 июня",
+    "cancer"        : "Рак      - 22 июня — 22 июля",
+    "leo"           : "Лев      - 23 июля — 23 августа",
+    "virgo"         : "Дева     - 24 августа — 23 сентября",
+    "libra"         : "Весы     - 24 сентября — 23 октября",
+    "scorpio"       : "Скорпион - 24 октября — 22 ноября",
+    "sagittarius"   : "Стрелец  - 23 ноября — 21 декабря",
+    "capricorn"     : "Козерог  - 22 декабря — 20 января",
+    "aquarius"      : "Водолей  - 21 января — 20 февраля",
+    "pisces"        : "Рыбы     - 21 февраля — 20 марта",
 }
+
+date_zodiac = {
+    "aries": ((3, 21), (4, 20)),
+    "taurus": ((4, 21), (5, 20)),
+    "gemini": ((5, 21), (6, 21)),
+    "cancer": ((6, 22), (7, 22)),
+    "leo": ((7, 23), (8, 23)),
+    "virgo": ((8, 24), (9, 23)),
+    "libra": ((9, 24), (10, 23)),
+    "scorpio": ((10, 24), (11, 22)),
+    "sagittarius": ((11, 23), (12, 21)),
+    "capricorn": ((12, 22), (1, 20)),
+    "aquarius": ((1, 21), (2, 20)),
+    "pisces": ((2, 21), (3, 20))
+}
+
 types = {
     "fire"  : ["aries", "leo", "sagittarius"],
     "earth" : ["taurus", "virgo", "capricorn"],
     "air"   : ["gemini", "libra", "aquarius"],
     "water" : ["cancer", "scorpio", "pisces"]
 }
+
 def index(request):
     zodiacs = list(dict_zodiak)
     li_elements = ""
@@ -41,7 +60,7 @@ def type_index(request):
     li_types = ""
     for sign in types_list:
         redirect_path = reverse("type-name", args=[sign])
-        li_types += f"<li><a href ='{redirect_path}'>{sign}</a> </li>"
+        li_types += f"<li><a href ='{redirect_path}'>{sign.title()}</a> </li>"
     response = f"""
         <ul>
         {li_types}
@@ -55,7 +74,7 @@ def get_zodiac_type(request, sign_type: str):
         menu_zodiak = ""
         for znak in list_element:
             redirect_path = reverse("horoscope-name", args=[znak])
-            menu_zodiak += f"<li><a href ='{redirect_path}'>{znak}</a></li>"
+            menu_zodiak += f"<li><a href ='{redirect_path}'>{znak.title()}</a></li>"
         response = f"""
         <ul>
             {menu_zodiak}
@@ -85,3 +104,29 @@ def get_info_about_111(request):
 
 def get_info_about_555(request):
     return HttpResponse(f'This is 555')
+
+def get_info_by_date(request, month, day):
+    response = identify_zodiac_sign(day, month, 0)
+
+    if response == "Некорректная дата":
+        return HttpResponseNotFound(f"День: {day}, Месяц: {month}<br>{response}")
+    else:
+        return HttpResponse(f"День: {day}, Месяц: {month}<br><h2>{dict_zodiak[response]}</h2>")
+
+
+def identify_zodiac_sign(day, month, year):
+    try:
+        if year == 0:
+            year = datetime.datetime.now().year
+
+        user_date = datetime.date(year, month, day)
+
+        for zodiac, date in date_zodiac.items():
+            date_from = datetime.date(year, date[0][0], date[0][1])
+            date_to = datetime.date(year, date[1][0], date[1][1])
+
+            if date_from <= user_date and user_date <= date_to:
+                return zodiac
+        return "capricorn"
+    except:
+        return "Некорректная дата"
