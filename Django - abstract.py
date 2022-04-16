@@ -404,3 +404,49 @@ from django.shortcuts import render
 
 def get_info_about_sign_zodiak_by_string(request, sign_zodiak: str):
     return render(request, 'horoscope/info_zodiac.html')
+
+
+############################################################################################################
+# 21 django template language
+
+Динамический HTML = синтаксис HTML + Синтаксис Djange Template Language + Данные 
+
+render(request, 'horoscope/info_zodiac.html', context = data)  - у функции render аргумент context прнимает словарь, 
+в нем содержатся данные для отображение в html странице
+
+from dataclasses import dataclass
+
+@dataclass
+class Person:
+    name: str
+    age: int
+
+    def __str__(self):
+        return f"This is {self.name}, his age {self.age}"
+
+
+    data = {
+        "description": description,
+        "sign": sign_zodiak.title(),
+        "my_int": 123,
+        "my_float": 12.55,
+        "my_list": [1, 2, 3, 4],
+        "my_tuple": ('q', 'w', 'e', 1, 2, 3),
+        "my_dict": {"name": "Андрей", "age": 32},
+        "my_class": Person("Will", 55)
+    }
+
+Используем переменные в html странице:
+
+    <h1>Приложение Гороскоп</h1>
+    <h2> {{ description }} </h2>
+    <p>my_int   - {{my_int}}</p>
+    <p>my_float - {{my_float}}</p>
+    <p>my_list  - {{my_list}}</p>
+    <p>my_tuple - {{my_tuple}}</p>
+    <p>my_dict  - {{my_dict}}</p>
+    <p>Имя: {{my_dict.name}}, возраст:{{my_dict.age}}</p>
+    <p>Экземпляр класса {{my_class}}</p>
+    <p>Данные класса:</p>
+    <p><li>Имя: {{my_class.name}}</li></p>
+    <p><li>Возраст: {{my_class.age}}</li></p>

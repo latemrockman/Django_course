@@ -2,11 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Гороскоп</title>
+    <title>Гороскоп для {{sign}}</title>
 </head>
 <body>
     <h1>Приложение Гороскоп</h1>
-    <h2>Телец    - 21 апреля — 20 мая</h2>
+    <h2> {{ description }} </h2>
+    <p>my_int   - {{my_int}}</p>
+    <p>my_float - {{my_float}}</p>
+    <p>my_list  - {{my_list}}</p>
+    <p>my_tuple - {{my_tuple}}</p>
+    <p>my_dict  - {{my_dict}}</p>
+    <p>Имя: {{my_dict.name}}, возраст:{{my_dict.age}}</p>
+    <p>Экземпляр класса {{my_class}}</p>
+    <p>Данные класса:</p>
+    <p><li>Имя: {{my_class.name}}</li></p>
+    <p><li>Возраст: {{my_class.age}}</li></p>
 
 </body>
 </html>
