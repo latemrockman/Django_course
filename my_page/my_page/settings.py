@@ -56,7 +56,8 @@ ROOT_URLCONF = 'my_page.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "horoscope" / "templates"],
+        'DIRS': [],
+        #'DIRS': [BASE_DIR / "horoscope" / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -385,3 +385,22 @@ TEMPLATES -> DIRS -> 'DIRS': [BASE_DIR / "horoscope" / "templates"]   - это �
 
 ПРЕДПОЧТИТЕЛЬНЫЙ ВАРИАНТ:
 1. settings.py -> INSTALLED_APPS -> добавить 'horoscope' (название лежит в файле apps.py)
+
+
+############################################################################################################
+# 20 поиск шаблонов
+
+
+render() заменяет render_to_string('horoscope/info_zodiac.html') и HttpResponse():
+
+изначально:
+def get_info_about_sign_zodiak_by_string(request, sign_zodiak: str):
+    response = render_to_string('horoscope/info_zodiac.html')
+    return HttpResponse(response)
+
+можно заменить на:
+
+from django.shortcuts import render
+
+def get_info_about_sign_zodiak_by_string(request, sign_zodiak: str):
+    return render(request, 'horoscope/info_zodiac.html')

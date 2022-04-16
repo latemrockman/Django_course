@@ -94,8 +94,7 @@ def get_info_about_sign_zodiak_by_number(request, sign_zodiak: int):
     return HttpResponseRedirect(redirect_url)
 
 def get_info_about_sign_zodiak_by_string(request, sign_zodiak: str):
-    response = render_to_string('horoscope/info_zodiac.html')
-    return HttpResponse(response)
+    return render(request, 'horoscope/info_zodiac.html')
 
 def get_info_about_111(request):
     return HttpResponseRedirect(f'https://mail.ru/')
