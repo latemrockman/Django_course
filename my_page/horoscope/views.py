@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
 import datetime
+from django.template.loader import render_to_string
 
 # Create your views here.
 
@@ -93,11 +94,8 @@ def get_info_about_sign_zodiak_by_number(request, sign_zodiak: int):
     return HttpResponseRedirect(redirect_url)
 
 def get_info_about_sign_zodiak_by_string(request, sign_zodiak: str):
-    description = dict_zodiak.get(sign_zodiak, None)
-    if description:
-        return HttpResponse(f"<h2>{description}</h2>")
-    else:
-        return HttpResponseNotFound(f"{sign_zodiak} - неизвестный знак зодиака")
+    response = render_to_string('horoscope/info_zodiac.html')
+    return HttpResponse(response)
 
 def get_info_about_111(request):
     return HttpResponseRedirect(f'https://mail.ru/')

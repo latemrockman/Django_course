@@ -363,3 +363,25 @@ class MyDateConverter:
 register_converter(converters.MyDateConverter, 'my_date')
 
 urlpatterns - path('<my_date:sign_zodiac>', views.get_my_date_converters),
+
+############################################################################################################
+# 19 шаблоны в django
+
+1. создаем папку templates в horoscope (общепринятое место)
+2. внутри templates создаем еще одну папку с названием нашего приложения "horoscope"
+3. в новой папке horoscope создаем info_zodial.html и редактируем его
+4. в файле views импортируем from django.template.loader import render_to_string
+5. views изменяем функцию:
+def get_info_about_sign_zodiak_by_string(request, sign_zodiak: str):
+    response = render_to_string('horoscope/info_zodiac.html')
+    return HttpResponse(response)
+6. settings.py:
+TEMPLATES -> DIRS - в этом списке указываются абсолютные пути к шаблонам
+BASE_DIR - это абсолютный путь к проекту, 
+
+TEMPLATES -> DIRS -> 'DIRS': [BASE_DIR / "horoscope" / "templates"]   - это менее предпочтительный способ
+
+#'APP_DIRS': True, -тру значит, что джанго автоматически в каждом приложении проекта будет искать папку templates
+
+ПРЕДПОЧТИТЕЛЬНЫЙ ВАРИАНТ:
+1. settings.py -> INSTALLED_APPS -> добавить 'horoscope' (название лежит в файле apps.py)
