@@ -465,3 +465,24 @@ capfirst - делает первую букву заглавной (аналог
 {{andrew|capfirst}}                 -> Andrew
 {{andrew|upper}}                    -> ANDREW
 {{this is hello world|upper}}       -> This Is Hello World
+
+############################################################################################################
+# 23 Тег if. Теги в Django
+
+
+    {% if description%}                                         # если description is True
+        <h2> {{ description|capfirst }} </h2>
+    {% else %}
+        <h2> Неправильный знак зодиака - {{ sign }} </h2>
+    {% endif %}
+######
+
+    {% if my_list|length >= 5 %}
+        <p>Длина списка больше или равна 5: {{my_list}}</p>
+    {% elif my_list|length == 4 %}
+        <p>Длина списка  равна 4: {{my_list}}</p>
+    {% elif my_list|length == 3 %}
+        <p>Длина списка равна 3: {{my_list}}</p>
+    {% elif my_list|length <= 2 %}
+        <p>Длина списка меньше или равна 2: {{my_list}}</p>
+    {% endif %}

@@ -6,9 +6,25 @@
 </head>
 <body>
     <h1>Приложение Гороскоп</h1>
-    <h2> {{ description }} </h2>
+    {% if description%}
+        <h2> {{ description|capfirst }} </h2>
+    {% else %}
+        <h2> Неправильный знак зодиака - {{ sign }} </h2>
+    {% endif %}
+
     <p>my_int   - {{my_int}}</p>
     <p>my_float - {{my_float}}</p>
+
+    {% if my_list|length >= 5 %}
+        <p>Длина списка больше или равна 5: {{my_list}}</p>
+    {% elif my_list|length == 4 %}
+        <p>Длина списка  равна 4: {{my_list}}</p>
+    {% elif my_list|length == 3 %}
+        <p>Длина списка равна 3: {{my_list}}</p>
+    {% elif my_list|length <= 2 %}
+        <p>Длина списка меньше или равна 2: {{my_list}}</p>
+    {% endif %}
+
     <p>my_list  - {{my_list}}</p>
     <p>my_tuple - {{my_tuple}}</p>
     <p>my_dict  - {{my_dict}}</p>

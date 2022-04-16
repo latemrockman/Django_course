@@ -110,12 +110,11 @@ def get_info_about_sign_zodiak_by_string(request, sign_zodiak: str):
         "sign": sign_zodiak,
         "my_int": 123,
         "my_float": 12.55,
-        "my_list": [1, 2, 3, 4],
+        "my_list": [1, 3, 7, 6, 8],
         "my_tuple": ('q', 'w', 'e', 1, 2, 3),
         "my_dict": {"name": "Андрей", "age": 32},
         "my_class": Person("Will", 55)
     }
-
 
     return render(request, 'horoscope/info_zodiac.html', context = data)
 
