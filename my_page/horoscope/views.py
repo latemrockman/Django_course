@@ -130,3 +130,13 @@ def identify_zodiac_sign(day, month, year):
         return "capricorn"
     except:
         return "Некорректная дата"
+
+
+def get_yyyy_converters(request, sign_zodiac):
+    return HttpResponse(f"Вы передали число из четырёх чисел - {sign_zodiac}")
+
+def get_my_float_converters(request, sign_zodiac):
+    return HttpResponse(f"Вы передали вещественное число - {sign_zodiac}")
+
+def get_my_date_converters(request, sign_zodiac):
+    return HttpResponse(f"Вы указали дату - {sign_zodiac}")

@@ -284,3 +284,82 @@ def index(request):
     </ul>
 """
     return HttpResponse(response)
+    
+    
+############################################################################################################
+#18-1 Создаем собственный конвертер 
+
+from django.urls import path, converters  - converters модуль, тут можно посмотреть встроенные конвертеры
+
+
+class StringConverter:                  # конвертер должен представлять собой класс (имя выбираем сами). в классе должны быть три составляющие:
+    regex = "[^/]+"                     # 1. регулярное выражение (переменная regex) по нему будет искаться строка в роуте
+
+    def to_python(self, value):         # 2. если значение нашлось, то строка будет поступать на функцию to_python
+        return value                    # в этой функц нужно преобразовать строку в нужный мне объект
+
+    def to_url(self, value):            # 3. обратное преобразование - из объекта, преобразует представление строки
+        return value
+#
+
+1. создаем файл converters.py в папке с проектом (там же где и views.py), туда пишем класс конвертера:
+class FourDigitYearConverter:
+    regex = '[0-9]{4}'
+
+    def to_python(self, value):
+        return int(value)
+
+    def to_url(self, value):
+        return '%04d' % value
+
+2. регистрируем - в url конфиге (файл urls.py):
+from django.urls import path, register_converter    # добавили register_converter
+from . import views, converters                     # файл converters
+
+
+3. регистрируем, добавляем строчку:
+register_converter(converters.FourDigitYearConverter, 'yyyy')
+
+4. в urlpatterns добавляем:
+    path('<yyyy:sign_zodiac>/', views.get_yyyy_converters),
+№
+
+5. в файле views добавляем соответствующую функцию:
+def get_yyyy_converters(request, sign_zodiac):
+    return HttpResponse(f"Вы передали число из четырёх чисел - {sign_zodiac}")
+№
+
+Делаем еще один конвертер:
+
+1. добавляем класс в converters.py
+class MyFloatConverter:
+    regex = '[+-]?(\d*\.)?\d+'
+
+    def to_python(self, value):
+        return float(value)
+
+    def to_url(self, value):
+        return str(value)
+#
+2. регистрируем конвертер:
+- добавляем строчку register_converter(converters.MyFloatConverter, 'my_float')
+- в urlpatterns добавляем:      path('<my_float:sign_zodiac>/', views.get_my_float_converters),
+
+3. views добавляем:
+def get_my_float_converters(request, sign_zodiac):
+    return HttpResponse(f"Вы передали вещественное число - {sign_zodiac}")
+    
+# Еще один конвертер (MyDateConverter):
+
+class MyDateConverter:
+    regex = '^(0[1-9]|[12][0-9]|3[01])[-](0[1-9]|1[012])[-](19|20)\d\d$'
+
+    def to_python(self, value):
+        return datetime.strptime(value, '%d-%m-%Y')
+
+    def to_url(self, value):
+        return value.strftime('%d-%m-%Y')
+#
+register_converter(converters.MyDateConverter, 'my_date')
+
+urlpatterns - path('<my_date:sign_zodiac>', views.get_my_date_converters),
