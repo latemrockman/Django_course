@@ -450,3 +450,18 @@ class Person:
     <p>Данные класса:</p>
     <p><li>Имя: {{my_class.name}}</li></p>
     <p><li>Возраст: {{my_class.age}}</li></p>
+
+
+
+############################################################################################################
+# 22 фильтры в шаблонах
+
+в HTML коде:
+
+capfirst - делает первую букву заглавной (аналог .title() )
+
+{{value|capfirst}}
+
+{{andrew|capfirst}}                 -> Andrew
+{{andrew|upper}}                    -> ANDREW
+{{this is hello world|upper}}       -> This Is Hello World

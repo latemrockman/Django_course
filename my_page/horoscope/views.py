@@ -107,7 +107,7 @@ def get_info_about_sign_zodiak_by_string(request, sign_zodiak: str):
     description = dict_zodiak.get(sign_zodiak)
     data = {
         "description": description,
-        "sign": sign_zodiak.title(),
+        "sign": sign_zodiak,
         "my_int": 123,
         "my_float": 12.55,
         "my_list": [1, 2, 3, 4],
