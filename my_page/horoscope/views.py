@@ -110,7 +110,7 @@ def get_info_about_sign_zodiak_by_string(request, sign_zodiak: str):
         "sign": sign_zodiak,
         "my_int": 123,
         "my_float": 12.55,
-        "my_list": [1, 3, 7, 6, 8],
+        "my_list": [1, 8, 7, 9],
         "my_tuple": ('q', 'w', 'e', 1, 2, 3),
         "my_dict": {"name": "Андрей", "age": 32},
         "my_class": Person("Will", 55)

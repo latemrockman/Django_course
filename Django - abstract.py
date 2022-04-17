@@ -486,3 +486,19 @@ capfirst - делает первую букву заглавной (аналог
     {% elif my_list|length <= 2 %}
         <p>Длина списка меньше или равна 2: {{my_list}}</p>
     {% endif %}
+
+#### вложенные условия: 
+
+    {% if my_list|length >= 5 %}
+        <p>Длина списка больше или равна 5: {{my_list}}</p>
+    {% elif my_list|length == 4 %}
+        {% if 5 in my_list %}
+            <p> В списке есть 5 {{my_list}} </p>
+        {% else%}
+            <p>В списке нет 5: {{my_list}}</p>
+        {% endif %}
+    {% elif my_list|length == 3 %}
+        <p>Длина списка равна 3: {{my_list}}</p>
+    {% elif my_list|length <= 2 %}
+        <p>Длина списка меньше или равна 2: {{my_list}}</p>
+    {% endif %}
