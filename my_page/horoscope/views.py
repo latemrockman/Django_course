@@ -2,8 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
 import datetime
-from dataclasses import dataclass
-from django.template.loader import render_to_string
+
 
 # Create your views here.
 
@@ -90,26 +89,12 @@ def get_info_about_sign_zodiak_by_number(request, sign_zodiak: int):
     redirect_url = reverse("horoscope-name", args=(name_zodiac,))
     return HttpResponseRedirect(redirect_url)
 
-@dataclass
-class Person:
-    name: str
-    age: int
-
-    def __str__(self):
-        return f"This is {self.name}, his age {self.age}"
-
 
 def get_info_about_sign_zodiak_by_string(request, sign_zodiak: str):
     description = dict_zodiak.get(sign_zodiak)
     data = {
         "description": description,
         "sign": sign_zodiak,
-        "my_int": 123,
-        "my_float": 12.55,
-        "my_list": [1, 8, 7, 9],
-        "my_tuple": ('q', 'w', 'e', 1, 2, 3),
-        "my_dict": {"name": "Андрей", "age": 32},
-        "my_class": Person("Will", 55)
     }
 
     return render(request, 'horoscope/info_zodiac.html', context = data)
