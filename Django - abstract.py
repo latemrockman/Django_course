@@ -534,7 +534,7 @@ capfirst - делает первую букву заглавной (аналог
     </ul>
 
 ############################################################################################################
-# 24 Тег url. Теги в Django
+# 25 Тег url. Теги в Django
 
 CTRL + ALT + J - выбрать текст и нажать сочетание клавишь, чтобы обернуть его в тег
 
@@ -557,3 +557,43 @@ CTRL + ALT + J - выбрать текст и нажать сочетание к
 
 # 'horoscope-name' - имя роута, он записан в horoscope/urls.py -> name = "horoscope-name"
 # sign_zodiak=point аргументу функции sign_zodiak присвоили значение point из цикла
+
+
+############################################################################################################
+# Наследование шаблонов
+
+1. шаблон принято создавать в папке mypage/templates/base.html (на уровне с папкой приложения)
+2. settingspy -> добавляем папку с шаблоном 'DIRS': [BASE_DIR / "templates"],
+3. base.html:
+
+<!DOCTYPE html>                                                 # структура страницы в html
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> {% block title %} {% endblock %} </title>           # динамический блок title
+</head>
+<body>
+
+    {% block content %} {% endblock %}                          # динамический блок content
+
+</body>
+</html>
+
+4. index.html and info_zodiac.html:
+
+{% extends 'base.html' %}                                           # тег для подключения шаблона
+
+{% block title %}
+    Гороскоп для {{sign|capfirst}}                                  # динамический блок title
+{% endblock %}
+
+{% block content %}                                                 # динамический блок content      
+
+    {% if description%}
+        <h2> {{ description|capfirst }} </h2>
+    {% else %}
+        <h2> Неправильный знак зодиака - {{ sign }} </h2>
+    {% endif %}
+
+{% endblock %}
+
