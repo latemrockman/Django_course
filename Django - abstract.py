@@ -599,7 +599,7 @@ CTRL + ALT + J - выбрать текст и нажать сочетание к
 
 
 ############################################################################################################
-# Тег include
+# 27 - Тег include
 
 1. создаем папку includes :         my_page/horoscope/templates/includes
 2. в папке includes создать файл navbar.py с содержанием:
@@ -647,5 +647,81 @@ CTRL + ALT + J - выбрать текст и нажать сочетание к
 меняем на:
 
     <a href="{% url 'horoscope-index' %}">Главная</a> |
+
+
+############################################################################################################
+# 28 - Подключение статических файлов
+
+
+1. создать папку static (my_page/horoscope/static)          # общепринятое название и путь
+2. создать папку horoscope в папке static 
+3. в папке horoscope создать папаки "js","css","img"        # принято разделять статику по папкам
+4.  в папаке css создаем файл index.css                     # css файл для index.html
+    
+
+ul {
+border-left: 5px solid red;
+background-color: #f1f1f1;
+}
+
+5. settings.py:
+в INSTALLED_APPS должен быть     'django.contrib.staticfiles',              # эта строчка позволяет добавить функциональность по работе со статикой
+
+6. добавить в index.html (сразу после {% extends 'base.html' %}):       
+{% load static %}                                                       # так добавляем в шаблон возможность работы со статикой и теперь доступны новые теги
+
+{% block css_additional %} 
+    <link rel="stylesheet" href="{% static 'horoscope/css/index.css'%}">    # указывает какой тип документа подгрузить (stylesheet - css)
+{% endblock %}                                                              # этот тег должен быть обязательно в теге <head>
+
+7. base.html:
+в теге head добавить
+{% block css_additional %} {% endblock %}
+
+
+#### добавить стиль в info_zodiac.html:
+
+1. index.html
+{% load static %}                                                       
+{% block css_additional %} 
+    <link rel="stylesheet" href="{% static 'horoscope/css/info.css'%}">
+{% endblock %}      
+
+
+### можно подклчить сразу 2 файла css:
+
+{% load static %}                                                       
+{% block css_additional %} 
+    <link rel="stylesheet" href="{% static 'horoscope/css/index.css'%}">
+    <link rel="stylesheet" href="{% static 'horoscope/css/info.css'%}">
+{% endblock %}         
+
+но обычно 2 css к одной странице не подключатся
+
+
+##### подключение css к глобальному шаблону:
+
+1. создать папки и файл my_page/static/css/base.css
+
+html {
+    background-color: red;
+}
+
+2. settings.py добавить:
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static"
+]
+
+
+3. base.html
+
+{% load static %}                                               # добавить в самом начале
+
+<link rel="stylesheet" href="{% static 'css/base.css' %}">      # добавить в head
+
+
+############################################################################################################
+# 29 - Изменяем стиль проекта
 
 
