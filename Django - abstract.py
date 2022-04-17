@@ -502,3 +502,33 @@ capfirst - делает первую букву заглавной (аналог
     {% elif my_list|length <= 2 %}
         <p>Длина списка меньше или равна 2: {{my_list}}</p>
     {% endif %}
+
+############################################################################################################
+# 24 Тег for. Теги в Django
+
+1. создаем файл index.html (в папке templates/horoscope)
+
+   <ul>
+        {% for point in menu %}
+            {% if forloop.first %}
+                <li> {{ point|capfirst }} - первый</li>             # если первый элемент
+            {% elif forloop.last %}
+                <li> {{ point|capfirst }} - последний</li>          # если последний элемент
+            {% else %}
+                <li> {{ point|capfirst }} </li>                     # если не первый и не последний
+            {% endif%}
+        {% endfor %}
+    </ul>
+
+    <ul>
+        {% for key, value in dict.items reversed %}                 # обход словаря с множественным присвоением
+            <li> {{key}} - {{value}} </li>
+        {% endfor %}
+    </ul>
+
+    <ul>
+        {% for i in space %}
+        {% empty %}                                                 # empty срабатывает если список пустой
+            <p>Пустой список: {{space}}</p>
+        {% endfor %}
+    </ul>

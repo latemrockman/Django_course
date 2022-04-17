@@ -46,16 +46,12 @@ types = {
 
 def index(request):
     zodiacs = list(dict_zodiak)
-    li_elements = ""
-    for sign in zodiacs:
-        redirect_path = reverse("horoscope-name", args=[sign])
-        li_elements += f"<li><a href ='{redirect_path}'>{sign.title()}</a></li>"
-    response = f"""
-    <ul>
-        {li_elements}
-    </ul>
-"""
-    return HttpResponse(response)
+
+    data = {"menu": zodiacs,
+            "dict": dict_zodiak,
+            "space": ()}
+
+    return render(request, 'horoscope/index.html', context = data)
 
 def type_index(request):
     types_list = list(types)
