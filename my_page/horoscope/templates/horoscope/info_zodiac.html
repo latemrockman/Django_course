@@ -6,10 +6,14 @@
 
 {% block content %}
 
+{% include 'includes/navbar.html'%}
+
     {% if description%}
         <h2> {{ description|capfirst }} </h2>
     {% else %}
         <h2> Неправильный знак зодиака - {{ sign }} </h2>
     {% endif %}
+
+{% include 'includes/navbar.html' only with a=100 b=200 %}
 
 {% endblock %}

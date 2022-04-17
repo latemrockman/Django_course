@@ -597,3 +597,55 @@ CTRL + ALT + J - выбрать текст и нажать сочетание к
 
 {% endblock %}
 
+
+############################################################################################################
+# Тег include
+
+1. создаем папку includes :         my_page/horoscope/templates/includes
+2. в папке includes создать файл navbar.py с содержанием:
+
+<nav>
+    <a href="/horoscope">Главная</a> |
+    <a href="https://ya.ru/" target="_blank">Яндекс</a>
+
+    {% for point in menu %}
+        {% if forloop.last %}
+            <a href = "{% url 'horoscope-name' sign_zodiak=point %}">{{ point|capfirst }} </a>
+        {% else %}
+            |<a href = "{% url 'horoscope-name' sign_zodiak=point %}">{{ point|capfirst }} </a>
+        {% endif%}
+    {% endfor %}
+
+</nav>
+
+3. в файл index.html добавляем в том месте где нужно вставить блок из navbar.py
+
+{% include 'includes/navbar.html'%}
+
+
+
+###  тег include имеет доступ к переменным, которые есть в странице (index.html и info_zodiac.html)
+
+<p>Переменная sign - {{sign}}</p>               # не видно из меню, но видно из инфо
+<p>Переменная my_tuple - {{my_tuple}}</p>       # не видно из меню, но видно из инфо 
+<p>Переменная menu - {{menu}}</p>               # видно из меню, но не видно из инфо
+
+{% include 'includes/navbar.html' only %}       # only отключает переменные
+{% include 'includes/navbar.html' only with a=100 b=200 %}       # отключает переменные, но добавляем свои a и b
+
+
+# в файле horoscope/urls.py
+    path('', views.index),
+
+меняем на:
+    path('', views.index, name = "horoscope-index"),
+
+# в файле navbar.html 
+
+    <a href="/horoscope">Главная</a> |
+
+меняем на:
+
+    <a href="{% url 'horoscope-index' %}">Главная</a> |
+
+

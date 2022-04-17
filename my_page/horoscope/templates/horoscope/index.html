@@ -6,9 +6,14 @@
 
 {% block content %}
 
+{% include 'includes/navbar.html' only %}
     <ul>
         {% for point in menu %}
         <li><a href = "{% url 'horoscope-name' sign_zodiak=point %}">{{ point|capfirst }}</a> </li>
         {% endfor %}
     </ul>
+
+{% include 'includes/navbar.html'%}
+{% include 'includes/navbar.html' only with a=100 b=200 %}
+
 {% endblock %}
