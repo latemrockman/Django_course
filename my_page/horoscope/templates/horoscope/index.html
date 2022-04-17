@@ -7,28 +7,12 @@
 <body>
     <ul>
         {% for point in menu %}
-            {% if forloop.first %}
-                <li> {{ point|capfirst }} - первый</li>
-            {% elif forloop.last %}
-                <li> {{ point|capfirst }} - последний</li>
-            {% else %}
-                <li> {{ point|capfirst }} </li>
-            {% endif%}
+            <li><a href = "{% url 'horoscope-name' sign_zodiak=point %}">{{ point|capfirst }}</a> </li>
         {% endfor %}
     </ul>
 
-    <ul>
-        {% for key, value in dict.items reversed %}
-            <li> {{key}} - {{value}} </li>
-        {% endfor %}
-    </ul>
 
-    <ul>
-        {% for i in space %}
-        {% empty %}
-            <p>Пустой список: {{space}}</p>
-        {% endfor %}
-    </ul>
+
 
 
 </body>

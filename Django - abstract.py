@@ -532,3 +532,28 @@ capfirst - делает первую букву заглавной (аналог
             <p>Пустой список: {{space}}</p>
         {% endfor %}
     </ul>
+
+############################################################################################################
+# 24 Тег url. Теги в Django
+
+CTRL + ALT + J - выбрать текст и нажать сочетание клавишь, чтобы обернуть его в тег
+
+1й способ:
+    # если <a href="/horoscope/{{point}}"
+    # значить ссылка будет подставляться http://127.0.0.1:8000/horoscope/{{point}
+
+    # если <a href="{{point}}"
+    # то http://127.0.0.1:8000/horoscope/{{point}}
+
+    {% for point in menu %}
+        <li><a href="{{point}}">{{ point|capfirst }}</a> </li>       
+    {% endfor %}                                                                
+
+2й спосибо (более правильный)
+
+{% for point in menu %}
+    <li><a href = "{% url 'horoscope-name' sign_zodiak=point %}">{{ point|capfirst }}</a> </li>
+{% endfor %}       
+
+# 'horoscope-name' - имя роута, он записан в horoscope/urls.py -> name = "horoscope-name"
+# sign_zodiak=point аргументу функции sign_zodiak присвоили значение point из цикла
