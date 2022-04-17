@@ -17,11 +17,12 @@
 
 
     {% if description%}
+        <h1>{{ name_title }}</h1>
         <h2> {{ description|capfirst }} </h2>
     {% else %}
         <h2> Неправильный знак зодиака - {{ sign }} </h2>
     {% endif %}
 
-{% include 'includes/navbar.html' %}
+
 
 {% endblock %}

@@ -92,9 +92,13 @@ def get_info_about_sign_zodiak_by_number(request, sign_zodiak: int):
 
 def get_info_about_sign_zodiak_by_string(request, sign_zodiak: str):
     description = dict_zodiak.get(sign_zodiak)
+    name_title = description.split()[0]
+    zodiacs = list(dict_zodiak)
     data = {
-        "description": description,
-        "sign": sign_zodiak,
+        "description"   : description,
+        "sign"          : sign_zodiak,
+        "zodiacs"       : zodiacs,
+        "name_title"    : name_title
     }
 
     return render(request, 'horoscope/info_zodiac.html', context = data)

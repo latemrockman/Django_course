@@ -14,15 +14,14 @@
 
 {% block content %}
 
-<h2>Приложение ГОРОСКОП</h2>
 
-{% include 'includes/navbar.html' %}
+    <h1>Приложение ГОРОСКОП</h1>
+
     <ul>
         {% for point in menu %}
         <li><a href = "{% url 'horoscope-name' sign_zodiak=point %}">{{ point|capfirst }}</a> </li>
         {% endfor %}
     </ul>
 
-{% include 'includes/navbar.html'%}
 
 {% endblock %}

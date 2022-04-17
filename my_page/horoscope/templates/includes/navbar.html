@@ -1,12 +1,12 @@
 <nav>
-    <a href="{% url 'horoscope-index' %}">Главная</a> |
+    <a href="{% url 'horoscope-index' %}">Главная</a>
     <a href="https://ya.ru/" target="_blank">Яндекс</a>
 
-    {% for point in menu %}
-        {% if forloop.last %}
-            <a href = "{% url 'horoscope-name' sign_zodiak=point %}">{{ point|capfirst }} </a>
-        {% else %}
-            |<a href = "{% url 'horoscope-name' sign_zodiak=point %}">{{ point|capfirst }} </a>
-        {% endif%}
+    {% for point in zodiacs %}
+        <a href = "{% url 'horoscope-name' sign_zodiak=point %}">{{ point|capfirst }} </a>
+    {% empty %}
+        <p>Пустой список {{space}}</p>
+
+
     {% endfor %}
 </nav>
