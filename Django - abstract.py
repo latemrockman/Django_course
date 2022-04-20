@@ -725,3 +725,32 @@ STATICFILES_DIRS = [
 # 29 - Изменяем стиль проекта
 
 
+
+############################################################################################################
+создаем собственный фильтр
+
+
+заголовок страницы мы получаем  из функции def get_info_about_sign_zodiak_by_string(request, sign_zodiak: str)
+в нем name_title = description.split()[0], добавляем в словарь data который передаем в шаблон.
+
+0. <h1>{{ name_title }}</h1> заменяем на <h1>{{ description|split }}</h1>           # сплит это наш будующий фильтр
+1. создаем папку temolatetags  по адресу my_page/horoscope/temolatetags 
+папка должны быть (python Package) с файлом __init__.py внутри
+2. в папке temolatetags создаем файл my_filter.py
+3. импортируем from django import template
+4. register = template.library()        # создаем переменную, это будет экземпляр класса library
+
+5. создаем функцию:
+@register.filter(name='split')          # навешиваем декоратор, чтобы функция стала фильтром. name - название фильтра, можно придумать свой
+def split(value, key=' '):              # значение, которое будет разбиваться по какому-то знаку и ключ(знак)
+    return value.split(key) 
+6. добавить в шаблон {% load my_filter %}   my_filter - название файла, в котором находятся фильтры
+7. добавляем встроенный фильтр first для получения первого значения из списка. итого:
+<h1>{{ description|split|first }}</h1>
+
+### <h1>{{ description|split:"23"}}</h1>         # разбили строку по подствроке 23
+
+
+8. гарантировать чтобы на value приходила строка:
+from django.template.defaultfilters import stringfilter
+@stringfilter   - добавить декоратор на функцию

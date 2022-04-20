@@ -89,19 +89,18 @@ def get_info_about_sign_zodiak_by_number(request, sign_zodiak: int):
     redirect_url = reverse("horoscope-name", args=(name_zodiac,))
     return HttpResponseRedirect(redirect_url)
 
-
 def get_info_about_sign_zodiak_by_string(request, sign_zodiak: str):
     description = dict_zodiak.get(sign_zodiak)
-    name_title = description.split()[0]
-    zodiacs = list(dict_zodiak)
+    #name_title = description.split()[0]
+    #zodiacs = list(dict_zodiak)
     data = {
         "description"   : description,
         "sign"          : sign_zodiak,
-        "zodiacs"       : zodiacs,
-        "name_title"    : name_title
+        "zodiacs"       : dict_zodiak,
+#        "name_title"    : name_title
     }
 
-    return render(request, 'horoscope/info_zodiac.html', context = data)
+    return render(request, 'horoscope/info_zodiac.html', context=data)
 
 def get_info_about_111(request):
     return HttpResponseRedirect(f'https://mail.ru/')
@@ -116,7 +115,6 @@ def get_info_by_date(request, month, day):
         return HttpResponseNotFound(f"День: {day}, Месяц: {month}<br>{response}")
     else:
         return HttpResponse(f"День: {day}, Месяц: {month}<br><h2>{dict_zodiak[response]}</h2>")
-
 
 def identify_zodiac_sign(day, month, year):
     try:
@@ -134,7 +132,6 @@ def identify_zodiac_sign(day, month, year):
         return "capricorn"
     except:
         return "Некорректная дата"
-
 
 def get_yyyy_converters(request, sign_zodiac):
     return HttpResponse(f"Вы передали число из четырёх чисел - {sign_zodiac}")

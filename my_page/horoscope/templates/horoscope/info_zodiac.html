@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% load my_filter %}
+
 {% block css_additional %}
     <link rel="stylesheet" href="{% static 'horoscope/css/index.css'%}">
     <link rel="stylesheet" href="{% static 'horoscope/css/info.css'%}">
@@ -17,7 +19,7 @@
 
 
     {% if description%}
-        <h1>{{ name_title }}</h1>
+        <h1>{{ description|split|first}}</h1>
         <h2> {{ description|capfirst }} </h2>
     {% else %}
         <h2> Неправильный знак зодиака - {{ sign }} </h2>
