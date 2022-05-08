@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c3df8b65-dbb8-4597-948d-3fd030371de7" name="Changes" comment="# 39 Выводим QuerySet в шаблон">
-      <change afterPath="$PROJECT_DIR$/movie_app/templates/movie_app/one_movie.html" afterDir="false" />
+    <list default="true" id="c3df8b65-dbb8-4597-948d-3fd030371de7" name="Changes" comment="# 40 Методы и модели">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/movie_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/movie_app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie_app/templates/movie_app/all_movies.html" beforeDir="false" afterPath="$PROJECT_DIR$/movie_app/templates/movie_app/all_movies.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/movie_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/movie_app/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/movie_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/movie_app/views.py" afterDir="false" />
     </list>
@@ -141,7 +139,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652034891125</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="# 40 Методы и модели">
+      <created>1652039488892</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1652039488892</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -161,6 +166,7 @@
     <MESSAGE value="# 37 Фильтрация данных ORM, методы filter и get" />
     <MESSAGE value="# 38 Объект Q союхы AND и OR в запросе" />
     <MESSAGE value="# 39 Выводим QuerySet в шаблон" />
-    <option name="LAST_COMMIT_MESSAGE" value="# 39 Выводим QuerySet в шаблон" />
+    <MESSAGE value="# 40 Методы и модели" />
+    <option name="LAST_COMMIT_MESSAGE" value="# 40 Методы и модели" />
   </component>
 </project>
