@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c3df8b65-dbb8-4597-948d-3fd030371de7" name="Changes" comment="36 Изменение и удаление записей">
+    <list default="true" id="c3df8b65-dbb8-4597-948d-3fd030371de7" name="Changes" comment="# 37 Фильтрация данных ORM, методы filter и get">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,7 +53,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651946132843</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="# 37 Фильтрация данных ORM, методы filter и get">
+      <created>1651954046247</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1651954046247</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -70,6 +77,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="35 Выборка записей из таблицы" />
     <MESSAGE value="36 Изменение и удаление записей" />
-    <option name="LAST_COMMIT_MESSAGE" value="36 Изменение и удаление записей" />
+    <MESSAGE value="# 37 Фильтрация данных ORM, методы filter и get" />
+    <option name="LAST_COMMIT_MESSAGE" value="# 37 Фильтрация данных ORM, методы filter и get" />
   </component>
 </project>
