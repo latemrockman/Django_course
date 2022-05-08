@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
@@ -7,6 +8,9 @@ class Movie(models.Model):
     rating = models.IntegerField()
     year = models.IntegerField(null=True)
     budget = models.IntegerField(default=10000000)
+
+    def get_url(self):
+        return reverse('movie-detail', args=[self.id])
 
 
 
