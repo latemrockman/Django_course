@@ -10,6 +10,10 @@
     <h3>Год выхода - {{movie.year|default:"Неизвестен"}}</h3>
     <h3>Буджет - {{movie.budget}} $</h3>
 
+    <br>
+
+    <a href="{% url 'movie-index' %}">Вернуться на главную</a>
+
 
 
 {% endblock %}
