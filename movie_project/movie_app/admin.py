@@ -39,6 +39,14 @@ class MovieAdmin(admin.ModelAdmin):                                             
     search_fields = ['name__endswith', 'rating']                                        # добавили фильтр по и мени и рейтингу
     list_filter = ['name', 'currency', RatingFilter]
 
+    #fields = ['name', 'rating', 'year']                                                 # поля в создании и редактировании "карточки", отображается в том порядке как и в списке
+    exclude = []                                                         # ротивоположный аргумент fields, сли список пустой, то выводит все поля, если добавить, то исключает их из видимсти
+    #readonly_fields = ['rating']                                                         # перечисляем поля, которые запретщаем изменять - только чтение
+    prepopulated_fields = {'slug': ('name', )}                                          # теперь при заполнении поля name будет автоматически заполняться поле slug в соответствующем формате. так же можно будет в ручную редактировать поле slug и если мы добавим что-то что не соответствует формату slug то джанго будет ругаться
+
+
+
+
     @admin.display(description='Оценка')                                                # Задать название колонки (по умолчанию название берется по названию метода)
     def rating_status(self, mov: Movie):                                                # rating_status - название колонки, mov - экземпляр класса Movie (название экземпляра может быть любым)
         if mov.rating < 50:
@@ -60,7 +68,7 @@ class MovieAdmin(admin.ModelAdmin):                                             
         count_update = qs.update(currency=Movie.EUR)
         self.message_user(
             request,
-            f'Было обновлено {count_update} записей'                                    # сли тип сообщения не указывать, то будет стандартный INFO
+            f'Было обновлено {count_update} записей'                                    # если тип сообщения не указывать, то будет стандартный INFO
         )
 
     @admin.action(description='Установить валюту в рубли')
