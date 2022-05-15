@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c3df8b65-dbb8-4597-948d-3fd030371de7" name="Changes" comment="# 51 Поле Choises, Choises field">
+    <list default="true" id="c3df8b65-dbb8-4597-948d-3fd030371de7" name="Changes" comment="# 52 Создание действия в админке">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/movie_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/movie_app/admin.py" afterDir="false" />
     </list>
@@ -207,7 +207,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652607962034</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="# 52 Создание действия в админке">
+      <created>1652611950177</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1652611950177</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -236,6 +243,7 @@
     <MESSAGE value="# 49 Админка Django" />
     <MESSAGE value="# 50 Вычисляемое поле" />
     <MESSAGE value="# 51 Поле Choises, Choises field" />
-    <option name="LAST_COMMIT_MESSAGE" value="# 51 Поле Choises, Choises field" />
+    <MESSAGE value="# 52 Создание действия в админке" />
+    <option name="LAST_COMMIT_MESSAGE" value="# 52 Создание действия в админке" />
   </component>
 </project>

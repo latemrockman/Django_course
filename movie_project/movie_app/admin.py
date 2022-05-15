@@ -11,8 +11,9 @@ class MovieAdmin(admin.ModelAdmin):                                             
     list_display = ['name', 'rating', 'currency', 'year',  'budget', 'rating_status']   # перечисляем строками поля из класса Movie, 0й лемент будет ссылкой
     list_editable = ['rating', 'currency', 'year']                                      # перечисляем поля, которые можно редактировать из таблицы, поле 'name' нельзя указывать тк оно будет ссылкой
     ordering = ['rating', '-year']                                                      # сортировка, по рейтингу первостепенная, по году второстепенная
-    list_per_page = 15    # сколько записей отображается на 1й странице
+    list_per_page = 15                                                                  # сколько записей отображается на 1й странице
     actions = ['set_dollars', 'set_euro', 'set_rubles']
+    search_fields = ['name__endswith', 'rating']
 
     @admin.display(description='Оценка')                                                # Задать название колонки (по умолчанию название берется по названию метода)
     def rating_status(self, mov: Movie):                                                # rating_status - название колонки, mov - экземпляр класса Movie (название экземпляра может быть любым)
