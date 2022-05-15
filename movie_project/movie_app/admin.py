@@ -7,8 +7,8 @@ from .models import Movie
 
 @admin.register(Movie)                                                      # за классом админ указываем клас MovieAdmin
 class MovieAdmin(admin.ModelAdmin):                                         # класс обычно называют по названию модели + Admin
-    list_display = ['name', 'rating', 'year',  'budget', 'rating_status']   # перечисляем строками поля из класса Movie, 0й лемент будет ссылкой
-    list_editable = ['rating', 'year']                                      # перечисляем поля, которые можно редактировать из таблицы, поле 'name' нельзя указывать тк оно будет ссылкой
+    list_display = ['name', 'rating', 'currency', 'year',  'budget', 'rating_status']   # перечисляем строками поля из класса Movie, 0й лемент будет ссылкой
+    list_editable = ['rating', 'currency', 'year']                                      # перечисляем поля, которые можно редактировать из таблицы, поле 'name' нельзя указывать тк оно будет ссылкой
     ordering = ['rating', '-year']                                          # сортировка, по рейтингу первостепенная, по году второстепенная
     list_per_page = 15                                                      # сколько записей отображается на 1й странице
 
