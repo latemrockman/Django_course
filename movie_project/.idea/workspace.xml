@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c3df8b65-dbb8-4597-948d-3fd030371de7" name="Changes" comment="# 54 создание фильтра Django Admin">
+    <list default="true" id="c3df8b65-dbb8-4597-948d-3fd030371de7" name="Changes" comment="# 55  Настройка формы элемента">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/movie_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/movie_app/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/movie_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/movie_app/models.py" afterDir="false" />
@@ -229,7 +229,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652617682568</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="# 55  Настройка формы элемента">
+      <created>1652623890979</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1652623890979</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -261,6 +268,7 @@
     <MESSAGE value="# 52 Создание действия в админке" />
     <MESSAGE value="# 53 создание поисковой панели в Django" />
     <MESSAGE value="# 54 создание фильтра Django Admin" />
-    <option name="LAST_COMMIT_MESSAGE" value="# 54 создание фильтра Django Admin" />
+    <MESSAGE value="# 55  Настройка формы элемента" />
+    <option name="LAST_COMMIT_MESSAGE" value="# 55  Настройка формы элемента" />
   </component>
 </project>
