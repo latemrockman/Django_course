@@ -5,6 +5,29 @@ from django.db.models import QuerySet
 
 # Register your models here.
 
+class RatingFilter(admin.SimpleListFilter):                                             # создаем класс с осмысленным названием, наследуемся обязательно от admin.SimpleListFilter
+    title = 'Фильт по рейтингу'                                                         # обязательный атрибут, как будет называться фильтр
+    parameter_name = 'rating'                                                           # обязательный атрибут, значение подставляется в url при фильтрации
+
+    def lookups(self, request, model_admin):
+        return [                                                                        # возвращаем список из вариантов, которые мы можем выбрать в фильтре, представляет собой списко кортежей
+            ('<40', 'Низкий'),
+            ('от 40 до 59', 'Средний'),
+            ('от 60 до 79', 'Высокий'),
+            ('>= 80', 'Высочайший')
+        ]
+
+    def queryset(self, request, queryset: QuerySet):
+        if self.value() == '<40':                                                       # '<40' cравнивает со строкой из списка кортежей в def lookups
+            return queryset.filter(rating__lt=40)                                       # применяется фильтр из ОРМ
+        if self.value() == 'от 40 до 59':
+            return queryset.filter(rating__gte=40).filter(rating__lt=60)
+        if self.value() == 'от 60 до 79':
+            return queryset.filter(rating__gte=60).filter(rating__lt=80)
+        if self.value() == '>= 80':
+            return queryset.filter(rating__gte=80)
+        return queryset
+
 
 @admin.register(Movie)                                                                  # за классом админ указываем клас MovieAdmin
 class MovieAdmin(admin.ModelAdmin):                                                     # класс обычно называют по названию модели + Admin
@@ -12,8 +35,9 @@ class MovieAdmin(admin.ModelAdmin):                                             
     list_editable = ['rating', 'currency', 'year']                                      # перечисляем поля, которые можно редактировать из таблицы, поле 'name' нельзя указывать тк оно будет ссылкой
     ordering = ['rating', '-year']                                                      # сортировка, по рейтингу первостепенная, по году второстепенная
     list_per_page = 15                                                                  # сколько записей отображается на 1й странице
-    actions = ['set_dollars', 'set_euro', 'set_rubles']
-    search_fields = ['name__endswith', 'rating']
+    actions = ['set_dollars', 'set_euro', 'set_rubles']                                 # добавили действия
+    search_fields = ['name__endswith', 'rating']                                        # добавили фильтр по и мени и рейтингу
+    list_filter = ['name', 'currency', RatingFilter]
 
     @admin.display(description='Оценка')                                                # Задать название колонки (по умолчанию название берется по названию метода)
     def rating_status(self, mov: Movie):                                                # rating_status - название колонки, mov - экземпляр класса Movie (название экземпляра может быть любым)
