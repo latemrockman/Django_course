@@ -39,8 +39,8 @@ class RatingFilter(admin.SimpleListFilter):                                     
 
 @admin.register(Movie)                                                                  # за классом админ указываем клас MovieAdmin
 class MovieAdmin(admin.ModelAdmin):                                                     # класс обычно называют по названию модели + Admin
-    list_display = ['name', 'rating', 'currency', 'year',  'budget', 'rating_status']   # перечисляем строками поля из класса Movie, 0й лемент будет ссылкой
-    list_editable = ['rating', 'currency', 'year']                                      # перечисляем поля, которые можно редактировать из таблицы, поле 'name' нельзя указывать тк оно будет ссылкой
+    list_display = ['name', 'rating', 'director', 'year',  'budget', 'rating_status']   # перечисляем строками поля из класса Movie, 0й лемент будет ссылкой
+    list_editable = ['rating', 'director', 'year']                                      # перечисляем поля, которые можно редактировать из таблицы, поле 'name' нельзя указывать тк оно будет ссылкой
     ordering = ['rating', '-year']                                                      # сортировка, по рейтингу первостепенная, по году второстепенная
     list_per_page = 15                                                                  # сколько записей отображается на 1й странице
     actions = ['set_dollars', 'set_euro', 'set_rubles']                                 # добавили действия
