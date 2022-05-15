@@ -1,5 +1,5 @@
 from django.contrib import admin, messages
-from .models import Movie, Director
+from .models import Movie, Director, Actor
 from django.db.models import QuerySet
 
 
@@ -7,6 +7,7 @@ from django.db.models import QuerySet
 # Register your models here.
 
 admin.site.register(Director)
+admin.site.register(Actor)
 
 
 
@@ -47,13 +48,13 @@ class MovieAdmin(admin.ModelAdmin):                                             
     search_fields = ['name__endswith', 'rating']                                        # добавили фильтр по и мени и рейтингу
     list_filter = ['name', 'currency', RatingFilter]
 
-    #fields = ['name', 'rating', 'year']                                                 # поля в создании и редактировании "карточки", отображается в том порядке как и в списке
-    exclude = []                                                         # ротивоположный аргумент fields, сли список пустой, то выводит все поля, если добавить, то исключает их из видимсти
-    #readonly_fields = ['rating']                                                         # перечисляем поля, которые запретщаем изменять - только чтение
+    #fields = ['name', 'rating', 'year']                                                # поля в создании и редактировании "карточки", отображается в том порядке как и в списке
+    exclude = []                                                                        # ротивоположный аргумент fields, сли список пустой, то выводит все поля, если добавить, то исключает их из видимсти
+    #readonly_fields = ['rating']                                                       # перечисляем поля, которые запретщаем изменять - только чтение
     prepopulated_fields = {'slug': ('name', )}                                          # теперь при заполнении поля name будет автоматически заполняться поле slug в соответствующем формате. так же можно будет в ручную редактировать поле slug и если мы добавим что-то что не соответствует формату slug то джанго будет ругаться
 
-
-
+    filter_horizontal = ['actors']                                                      # добавляем горизонтальный фильтр
+    #filter_vertical = ['actors']                                                       # такой же фильтр, только виджет располагается снизу, а горизонтальный сбоку
 
     @admin.display(description='Оценка')                                                # Задать название колонки (по умолчанию название берется по названию метода)
     def rating_status(self, mov: Movie):                                                # rating_status - название колонки, mov - экземпляр класса Movie (название экземпляра может быть любым)
