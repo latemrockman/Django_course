@@ -13,6 +13,8 @@ class Director(models.Model):
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
 
+    def get_url(self):
+        return reverse('director-details', args=[self.id])
 
 
 class Actor(models.Model):                                                          # таблица с актерами
@@ -34,7 +36,8 @@ class Actor(models.Model):                                                      
         else:
             return f'Актриса {self.first_name} {self.last_name}'
 
-
+    def get_url(self):
+        return reverse('actor-details', args=[self.id])
 
 
 

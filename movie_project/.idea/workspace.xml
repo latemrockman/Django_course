@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c3df8b65-dbb8-4597-948d-3fd030371de7" name="Changes" comment="# Добавил страницу &quot;Список всех режисёров&quot;">
+    <list default="true" id="c3df8b65-dbb8-4597-948d-3fd030371de7" name="Changes" comment="# Добавил переходы на личные страницы актёров и режисёров">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/movie_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/movie_app/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/movie_app/templates/movie_app/all_actors.html" beforeDir="false" afterPath="$PROJECT_DIR$/movie_app/templates/movie_app/all_actors.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/movie_app/templates/movie_app/all_directors.html" beforeDir="false" afterPath="$PROJECT_DIR$/movie_app/templates/movie_app/all_directors.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/movie_app/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/movie_app/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -267,7 +267,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653058036161</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="# Добавил переходы на личные страницы актёров и режисёров">
+      <created>1653059950395</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1653059950395</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -304,6 +311,18 @@
     <MESSAGE value="# 58 Связи один к одному" />
     <MESSAGE value="# Обновил суперпользователя Meshkoff, qwerty123!" />
     <MESSAGE value="# Добавил страницу &quot;Список всех режисёров&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="# Добавил страницу &quot;Список всех режисёров&quot;" />
+    <MESSAGE value="# Добавил переходы на личные страницы актёров и режисёров" />
+    <option name="LAST_COMMIT_MESSAGE" value="# Добавил переходы на личные страницы актёров и режисёров" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/movie_app/models.py</url>
+          <line>38</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
