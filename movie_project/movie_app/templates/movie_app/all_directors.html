@@ -10,7 +10,7 @@
 
     <ul>
         {% for director in director %}
-        <li><a href="">{{director.last_name}} {{director.first_name}}</a></li>
+        <li><a href="{% url 'director-details' director.id %}">{{director.last_name}} {{director.first_name}}</a></li>
         {% endfor %}
     </ul>
 

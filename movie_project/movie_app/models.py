@@ -67,7 +67,7 @@ class Movie(models.Model):
         super(Movie, self).save(*args, **kwargs)
 
     def get_url(self):
-        return reverse('movie-detail', args=[self.slug])
+        return reverse('movie-details', args=[self.slug])
 
     def __str__(self):
         return f'{self.name} - {self.rating}%'
