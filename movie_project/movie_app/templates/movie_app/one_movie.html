@@ -10,8 +10,9 @@
     <h3>Год выхода - {{movie.year|default:"Неизвестен"}}</h3>
     <h3>Буджет - {{movie.budget}} $</h3>
 
-    <br>
-
+    <hr>
+    <a href="{% url 'all-actors' %}">Список всех актёров</a> <br>
+    <a href="{% url 'all-directors' %}">Список всех режисёров</a> <br>
     <a href="{% url 'movie-index' %}">Вернуться на главную</a>
 
 
