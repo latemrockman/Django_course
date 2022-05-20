@@ -1,0 +1,23 @@
+{% extends 'movie_app/base.html' %}
+
+
+{% block title %} Все актёры {% endblock %}
+
+
+{% block content %}
+    <h2>Список всех актёров</h2>
+
+
+    <ul>
+        {% for actor in actors %}
+        <li><a href="">{{actor.last_name}} {{actor.first_name}}</a></li>
+        {% endfor %}
+    </ul>
+
+<hr>
+
+<a href="{% url 'movie-index' %}">Вернуться на главную</a>
+
+
+
+{% endblock %}
