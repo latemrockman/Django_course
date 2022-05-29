@@ -7,9 +7,11 @@ from django.db.models import QuerySet
 # Register your models here.
 
 admin.site.register(Director)
-admin.site.register(Actor)
 
 
+@admin.register(Actor)
+class MovieAdmin(admin.ModelAdmin):
+    list_display = ['full_name', 'gender']
 
 
 

@@ -19,8 +19,15 @@ def show_all_movie(request):
 
     agg = movies.aggregate(Avg('budget'), Max('rating'), Min('rating'), Count('name'))
 
-    for movie in movies:
-        movie.save()
+    all_movies = Movie.objects.all()
+    print(all_movies)
+
+    for movie in all_movies:
+        # movie.save()
+        print(f'!!save() , {movie.name}, slug - {movie.slug}')
+
+
+
     return render(request, 'movie_app/all_movies.html',
                   {'movies': movies,
                    'agg': agg,
@@ -36,6 +43,7 @@ def show_one_movie(request, slug_movie:str):
 def show_all_actors(request):
     actors = Actor.objects.all()
 
+
     return render(request, 'movie_app/all_actors.html', {'actors': actors})
 
 
@@ -45,10 +53,19 @@ def show_one_actor(request, id_actor: int):
 
 
 def show_all_directors(request):
-    director = Director.objects.all()
-    return render(request, 'movie_app/all_directors.html', {'director': director})
+    directors = Director.objects.all()
+
+    for director in directors:
+        director.save()
+        print(f'!!save() , {director.first_name}, slug - {director.slug}')
+    return render(request, 'movie_app/all_directors.html', {'directors': directors})
 
 
 def show_one_director(request, id_director: int):
     director = get_object_or_404(Director, id=id_director)
+    return render(request, 'movie_app/one_director.html', {'director': director})
+
+
+def show_one_director_by_name(request, name_director: str):
+    director = get_object_or_404(Director, slug=name_director)
     return render(request, 'movie_app/one_director.html', {'director': director})
