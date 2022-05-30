@@ -55,6 +55,27 @@ class RatingFilter(admin.SimpleListFilter):                                     
             return queryset.filter(rating__gte=80)
         return queryset
 
+class SkillFilter(admin.SimpleListFilter):
+    title = 'Опыт съемок'
+    parameter_name = 'skill'
+
+    def lookups(self, request, model_admin):
+        return [
+            ('меньше 3', 'Junior'),
+            ('от 3 до 5', 'Middle'),
+            ('от 5 до 10', 'Senior'),
+            ('больше 10', 'Team Leed'),
+        ]
+
+    def queryset(self, request, queryset):
+        if self.value() == 'меньше 3':
+            return queryset.filter(count_movie__lt=3)
+        elif self.value() == 'от 3 до 5':
+            return queryset.filter(count_movie__gte=3).filter(count_movie__lt=5)
+        elif self.value() == 'от 5 до 10':
+            return queryset.filter(count_movie__gte=5).filter(count_movie__lt=10)
+        elif self.value() == 'больше 10':
+            return queryset.filter(count_movie__gte=10)
 
 
 @admin.register(Director)
@@ -115,14 +136,40 @@ class MovieAdmin(admin.ModelAdmin):
         elif moviemaker.age >= 60:
             return 'Очень старый'
 
-
 @admin.register(Actor)
 class MovieAdmin(admin.ModelAdmin):
-    list_display = ['full_name', 'gender', 'slug']
-    list_editable = ['slug']
+    list_display = ['full_name', 'genre', 'gender', 'age', 'old_status', 'count_movie', 'slug']
+    list_editable = ['age', 'genre', 'count_movie']
     ordering = ['first_name']
-    list_per_page = 3
+    list_per_page = 15
+    actions = ['set_comedy']
+    prepopulated_fields = {'slug': ('last_name', 'first_name')}
+    search_fields = ['first_name__endswith', 'last_name__startswith']
+    list_filter = ['gender', 'genre', OldStatusFilter, SkillFilter]
+    fields = []
+    readonly_fields = []
 
+
+
+
+
+
+    @admin.action(description='Установиь жанр Комедия')
+    def set_comedy(self, request, qs: QuerySet):
+        qs.update(genre=Actor.COMEDY)
+
+        self.message_user(request, 'установили жанр Комедия', messages.INFO)
+
+    @admin.display(description='Возастной статус')
+    def old_status(self, moviemaker: Director):
+        if moviemaker.age < 40:
+            return 'Молодой'
+        elif moviemaker.age >= 40 and moviemaker.age < 50:
+            return 'Средний возраст'
+        elif moviemaker.age >= 50 and moviemaker.age < 60:
+            return 'Старый'
+        elif moviemaker.age >= 60:
+            return 'Очень старый'
 
 @admin.register(Movie)                                                                  # за классом админ указываем клас MovieAdmin
 class MovieAdmin(admin.ModelAdmin):                                                     # класс обычно называют по названию модели + Admin

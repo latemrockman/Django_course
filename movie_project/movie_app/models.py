@@ -60,11 +60,27 @@ class Actor(models.Model):  # таблица с актерами
         (FEMALE, 'Женщина')
     ]
 
+    TRILLER = 'T'
+    COMEDY = 'C'
+    DRAMMA = 'D'
+    TRAGEDY = 'T'
+
+    GENRE = [
+        (TRILLER, 'Триллер'),
+        (COMEDY, 'Комедия'),
+        (DRAMMA, 'Драмма'),
+        (TRAGEDY, 'Трагедия'),
+    ]
+
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     gender = models.CharField(max_length=1, choices=GENDERS,
                               default=MALE)  # колонка ПОЛ, max_length - максимальная длина 1 тк 'F' или 'M', choices - передаем список кортежей с вариантами значений, default - начение по умолчанию МУЖЧИНА
     slug = models.SlugField(default='', null=False, db_index=True)
+    age = models.IntegerField(default=25, null=False, validators=[MinValueValidator(1), MaxValueValidator(150)])
+    count_movie = models.IntegerField(default=0, null=False, validators=[MinValueValidator(0)])
+    genre = models.CharField(max_length=1, choices=GENRE,
+                              default=TRILLER)  # колонка ПОЛ, max_length - максимальная длина 1 тк 'F' или 'M', choices - передаем список кортежей с вариантами значений, default - начение по умолчанию МУЖЧИНА
 
     def full_name(self):
         return f'{self.first_name} {self.last_name}'
