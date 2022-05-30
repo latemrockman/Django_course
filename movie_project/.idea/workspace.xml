@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c3df8b65-dbb8-4597-948d-3fd030371de7" name="Changes" comment="# установил слаги для актеров">
+    <list default="true" id="c3df8b65-dbb8-4597-948d-3fd030371de7" name="Changes" comment="# установил везде переходы по ссылкам через get_url, поправил слаги">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/movie_app/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/movie_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/movie_app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie_app/templates/movie_app/all_actors.html" beforeDir="false" afterPath="$PROJECT_DIR$/movie_app/templates/movie_app/all_actors.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie_app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/movie_app/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/movie_app/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -337,7 +335,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653891666297</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="# установил везде переходы по ссылкам через get_url, поправил слаги">
+      <created>1653892710927</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1653892710927</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -352,7 +357,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="# 37 Фильтрация данных ORM, методы filter и get" />
     <MESSAGE value="# 38 Объект Q союхы AND и OR в запросе" />
     <MESSAGE value="# 39 Выводим QuerySet в шаблон" />
     <MESSAGE value="# 40 Методы и модели" />
@@ -377,6 +381,7 @@
     <MESSAGE value="# заполнил новые данные, починил slugs" />
     <MESSAGE value="# перевел в транслит слаги для фильмов и режисеров" />
     <MESSAGE value="# установил слаги для актеров" />
-    <option name="LAST_COMMIT_MESSAGE" value="# установил слаги для актеров" />
+    <MESSAGE value="# установил везде переходы по ссылкам через get_url, поправил слаги" />
+    <option name="LAST_COMMIT_MESSAGE" value="# установил везде переходы по ссылкам через get_url, поправил слаги" />
   </component>
 </project>

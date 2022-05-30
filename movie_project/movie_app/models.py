@@ -9,10 +9,31 @@ from . translit import text2translit
 # Create your models here.
 
 class Director(models.Model):
+
+    RU = 'RU'
+    IT = 'IT'
+    IS = 'IS'
+    FR = 'FR'
+    GE = 'GE'
+
+    HI = 'Hello'
+
+    COUNTRIES = [
+        ('RU', 'Россия'),
+        ('IT', 'Италия'),
+        ('IS', 'Испания'),
+        ('FR', 'Франция'),
+        ('GE', 'Германия')
+    ]
+
+
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     director_email = models.EmailField()
     slug = models.SlugField(default='', null=False, db_index=True)
+    country = models.CharField(max_length=10, choices=COUNTRIES,
+                              default=RU)
+    age = models.IntegerField(default=30, null=False, validators=[MinValueValidator(1), MaxValueValidator(150)])
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
@@ -25,6 +46,9 @@ class Director(models.Model):
     def get_url(self):
         return reverse('director-details', args=[self.slug])
         #return f'/director/{self.slug}'
+
+    def full_name(self):
+        return f'{self.first_name} {self.last_name}'
 
 
 class Actor(models.Model):  # таблица с актерами

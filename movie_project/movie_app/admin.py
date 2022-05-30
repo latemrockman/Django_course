@@ -6,15 +6,31 @@ from django.db.models import QuerySet
 
 # Register your models here.
 
-admin.site.register(Director)
+#admin.site.register(Director)
 
+class OldStatusFilter(admin.SimpleListFilter):
+    title = 'Фильтрация по возрастному статусу'
+    parameter_name = 'old_status'
 
-@admin.register(Actor)
-class MovieAdmin(admin.ModelAdmin):
-    list_display = ['full_name', 'gender']
+    def lookups(self, request, model_admin):
+        return [
+            ('младше 40', 'Молодой'),
+            ('от 40 до 50', 'Средний возраст'),
+            ('от 50 до 60', 'Старый'),
+            ('старше 60', 'Очень старый'),
+        ]
 
+    def queryset(self, request, queryset: QuerySet):
+        if self.value() == 'младше 40':
+            return queryset.filter(age__lt=40)
+        if self.value() == 'от 40 до 50':
+            return queryset.filter(age__gte=40).filter(age__lt=50)
+        if self.value() == 'от 50 до 60':
+            return queryset.filter(age__gte=50).filter(age__lt=60)
+        if self.value() == 'старше 60':
+            return queryset.filter(age__gt=60)
 
-
+        return queryset
 
 class RatingFilter(admin.SimpleListFilter):                                             # создаем класс с осмысленным названием, наследуемся обязательно от admin.SimpleListFilter
     title = 'Фильт по рейтингу'                                                         # обязательный атрибут, как будет называться фильтр
@@ -38,6 +54,74 @@ class RatingFilter(admin.SimpleListFilter):                                     
         if self.value() == '>= 80':
             return queryset.filter(rating__gte=80)
         return queryset
+
+
+
+@admin.register(Director)
+class MovieAdmin(admin.ModelAdmin):
+    list_display = ['full_name', 'age', 'old_status', 'director_email', 'country', 'slug']
+    list_editable = ['director_email', 'country', 'age']
+    ordering = ['first_name']
+    list_per_page = 15
+    actions = ['set_italy', 'set_spain', 'set_france', 'set_germany', 'set_hello']
+    prepopulated_fields = {'slug': ('last_name', 'first_name', )}
+    search_fields = ['first_name__endswith', 'last_name__startswith']
+    list_filter = ['first_name', 'country', OldStatusFilter]
+    fields = ['first_name', 'last_name', 'director_email', 'country', 'slug']
+    #readonly_fields = ['']
+
+
+    @admin.action(description='Заменить имя на "Hello"')                             # декоратор указывает, что это действие в админке + название
+    def set_hello(self, request, qs: QuerySet):
+        qs.update(first_name=Director.HI)
+
+        self.message_user(request, 'заменили имя на "Hello"', messages.WARNING)
+
+    @admin.action(description='Установить страну Италия')                             # декоратор указывает, что это действие в админке + название
+    def set_italy(self, request, qs: QuerySet):
+        qs.update(country=Director.IT)                                                   # update - метод класса Queryset, установить значение currency Movie.USD
+
+        self.message_user(request, 'изменили страну', messages.WARNING)             # тип сообщения WARNING
+
+    @admin.action(description='Установить страну Испания')                             # декоратор указывает, что это действие в админке + название
+    def set_spain(self, request, qs: QuerySet):
+        qs.update(country=Director.IS)                                                   # update - метод класса Queryset, установить значение currency Movie.USD
+
+        self.message_user(request, 'изменили страну', messages.INFO)             # тип сообщения INFO
+
+
+    @admin.action(description='Установить страну Франция')                             # декоратор указывает, что это действие в админке + название
+    def set_france(self, request, qs: QuerySet):
+        qs.update(country=Director.FR)                                                   # update - метод класса Queryset, установить значение currency Movie.USD
+
+        self.message_user(request, 'изменили страну', messages.ERROR)             # тип сообщения INFO
+
+    @admin.action(description='Установить страну Германия')                             # декоратор указывает, что это действие в админке + название
+    def set_germany(self, request, qs: QuerySet):
+        qs.update(country=Director.GE)                                                   # update - метод класса Queryset, установить значение currency Movie.USD
+
+        self.message_user(request, 'изменили страну', messages.SUCCESS)             # тип сообщения INFO
+
+
+
+    @admin.display(description='Возастной статус')
+    def old_status(self, moviemaker: Director):
+        if moviemaker.age < 40:
+            return 'Молодой'
+        elif moviemaker.age >= 40 and moviemaker.age < 50:
+            return 'Средний возраст'
+        elif moviemaker.age >= 50 and moviemaker.age < 60:
+            return 'Старый'
+        elif moviemaker.age >= 60:
+            return 'Очень старый'
+
+
+@admin.register(Actor)
+class MovieAdmin(admin.ModelAdmin):
+    list_display = ['full_name', 'gender', 'slug']
+    list_editable = ['slug']
+    ordering = ['first_name']
+    list_per_page = 3
 
 
 @admin.register(Movie)                                                                  # за классом админ указываем клас MovieAdmin
