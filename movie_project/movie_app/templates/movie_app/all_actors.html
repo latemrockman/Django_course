@@ -10,7 +10,7 @@
 
     <ul>
         {% for actor in actors %}
-        <li><a href="{{ actor.get_url }}">{{actor.last_name}} {{actor.first_name}}</a></li>
+        <li><a href="{{ actor.get_url }}">{{actor.first_name}} {{actor.last_name}}</a></li>
         {% endfor %}
     </ul>
 

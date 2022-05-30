@@ -23,8 +23,8 @@ class Director(models.Model):
         super(Director, self).save(*args, **kwargs)
 
     def get_url(self):
-        # return reverse('director-details', args=[self.id])
-        return f'/director/{self.slug}'
+        return reverse('director-details', args=[self.slug])
+        #return f'/director/{self.slug}'
 
 
 class Actor(models.Model):  # таблица с актерами
@@ -50,6 +50,9 @@ class Actor(models.Model):  # таблица с актерами
         self.slug = slugify(translit_slug)
         super(Actor, self).save(*args, **kwargs)
 
+
+    def get_url(self):
+        return reverse('actor-details', args=[self.slug])
 
     def __str__(self):
         if self.gender == self.MALE:  # если gender == MALE, обращаемся через self.
@@ -89,8 +92,8 @@ class Movie(models.Model):
         super(Movie, self).save(*args, **kwargs)
 
     def get_url(self):
-        # return reverse('movie-details', args=[self.slug])
-        return f'movie/{self.slug}'
+        return reverse('movie-details', args=[self.slug])
+        #return f'movie/{self.slug}'
 
     def __str__(self):
         return f'{self.name} - {self.rating}%'

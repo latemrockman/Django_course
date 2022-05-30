@@ -50,8 +50,8 @@ def show_all_actors(request):
     return render(request, 'movie_app/all_actors.html', {'actors': actors})
 
 
-def show_one_actor(request, id_actor: int):
-    actor = get_object_or_404(Actor, id=id_actor)
+def show_one_actor(request, slug_actor):
+    actor = get_object_or_404(Actor, slug=slug_actor)
     return render(request, 'movie_app/one_actor.html', {'actor': actor})
 
 
@@ -64,8 +64,8 @@ def show_all_directors(request):
     return render(request, 'movie_app/all_directors.html', {'directors': directors})
 
 
-def show_one_director(request, id_director: int):
-    director = get_object_or_404(Director, id=id_director)
+def show_one_director(request, slug_director):
+    director = get_object_or_404(Director, slug=slug_director)
     return render(request, 'movie_app/one_director.html', {'director': director})
 
 
