@@ -35,6 +35,8 @@ class Director(models.Model):
                               default=RU)
     age = models.IntegerField(default=30, null=False, validators=[MinValueValidator(1), MaxValueValidator(150)])
 
+    #films = models.ManyToManyField(Movie)
+
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
 
@@ -49,7 +51,6 @@ class Director(models.Model):
 
     def full_name(self):
         return f'{self.first_name} {self.last_name}'
-
 
 class Actor(models.Model):  # таблица с актерами
     MALE = 'M'  # переменне М и Ж
@@ -82,6 +83,10 @@ class Actor(models.Model):  # таблица с актерами
     genre = models.CharField(max_length=1, choices=GENRE,
                               default=TRILLER)  # колонка ПОЛ, max_length - максимальная длина 1 тк 'F' или 'M', choices - передаем список кортежей с вариантами значений, default - начение по умолчанию МУЖЧИНА
 
+    #actors = models.ManyToManyField(Actor)
+
+
+
     def full_name(self):
         return f'{self.first_name} {self.last_name}'
 
@@ -103,7 +108,6 @@ class Actor(models.Model):  # таблица с актерами
     # def get_url(self):
     #    return reverse('actor-details', args=[self.id])
 
-
 class Movie(models.Model):
     EUR = 'EUR'
     USD = 'USD'
@@ -123,7 +127,7 @@ class Movie(models.Model):
     budget = models.IntegerField(default=10000000, blank=True, validators=[MinValueValidator(0)])
     currency = models.CharField(max_length=3, choices=CURRENCYL_CHOICES, default=RUB)
     slug = models.SlugField(default='', null=False, db_index=True)
-    director = models.ForeignKey(Director, on_delete=models.CASCADE, null=True)
+    director = models.ForeignKey(Director, on_delete=models.CASCADE, null=True)                     # ForeinKey - внешний ключ (связь 1 ко многим)
     actors = models.ManyToManyField(Actor)
 
     def save(self, *args, **kwargs):

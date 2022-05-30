@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c3df8b65-dbb8-4597-948d-3fd030371de7" name="Changes" comment="# настроил поля и фильтры в админке для режисеров">
+    <list default="true" id="c3df8b65-dbb8-4597-948d-3fd030371de7" name="Changes" comment="# настроил поля и фильтры в админке для актёров">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/movie_app/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/movie_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/movie_app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie_app/templates/movie_app/one_actor.html" beforeDir="false" afterPath="$PROJECT_DIR$/movie_app/templates/movie_app/one_actor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie_app/templates/movie_app/one_movie.html" beforeDir="false" afterPath="$PROJECT_DIR$/movie_app/templates/movie_app/one_movie.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -349,7 +350,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653915929127</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="# настроил поля и фильтры в админке для актёров">
+      <created>1653921565691</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1653921565692</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -364,7 +372,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="# 39 Выводим QuerySet в шаблон" />
     <MESSAGE value="# 40 Методы и модели" />
     <MESSAGE value="# 41 SLUG поле" />
     <MESSAGE value="# 42 ортировка QuerySet" />
@@ -389,6 +396,7 @@
     <MESSAGE value="# установил слаги для актеров" />
     <MESSAGE value="# установил везде переходы по ссылкам через get_url, поправил слаги" />
     <MESSAGE value="# настроил поля и фильтры в админке для режисеров" />
-    <option name="LAST_COMMIT_MESSAGE" value="# настроил поля и фильтры в админке для режисеров" />
+    <MESSAGE value="# настроил поля и фильтры в админке для актёров" />
+    <option name="LAST_COMMIT_MESSAGE" value="# настроил поля и фильтры в админке для актёров" />
   </component>
 </project>

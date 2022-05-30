@@ -6,9 +6,19 @@
 
 {% block content %}
     <h2>Информация о фильме {{movie.name}}</h2>
-    <h3>Рейтинг - {{movie.rating}} %</h3>
-    <h3>Год выхода - {{movie.year|default:"Неизвестен"}}</h3>
-    <h3>Буджет - {{movie.budget}} $</h3>
+    <p>Рейтинг - {{movie.rating}} %</p>
+    <p>Год выхода - {{movie.year|default:"Неизвестен"}}</p>
+    <p>Буджет - {{ movie.budget }} </p>
+    <p>Валюта - {{ movie.currency }}</p>
+    <p>Режисёр - <a href="{{ movie.director.get_url }}">{{movie.director}} </a>({{movie.director.age}} лет)</p>
+
+    <h3>Актёры</h3>
+
+    <ul>
+        {% for actor in movie.actors.all %}
+        <li><a href='{{ actor.get_url }}'>{{actor}}</a> ({{actor.age}} лет)</li>
+        {% endfor %}
+    </ul>
 
     <hr>
     <a href="{% url 'all-actors' %}">Список всех актёров</a> <br>
