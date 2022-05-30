@@ -2,6 +2,8 @@ from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
 from django.core.validators import MaxValueValidator, MinValueValidator
+from . translit import text2translit
+
 
 
 # Create your models here.
@@ -16,7 +18,8 @@ class Director(models.Model):
         return f'{self.first_name} {self.last_name}'
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(f'{self.first_name} {self.last_name}', allow_unicode=True)
+        translit_slug = text2translit(f'{self.last_name} {self.first_name}')
+        self.slug = slugify(translit_slug)
         super(Director, self).save(*args, **kwargs)
 
     def get_url(self):
@@ -74,7 +77,8 @@ class Movie(models.Model):
     actors = models.ManyToManyField(Actor)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name, allow_unicode=True)
+        translit_slug = text2translit(self.name)
+        self.slug = slugify(translit_slug, allow_unicode=True)
         super(Movie, self).save(*args, **kwargs)
 
     def get_url(self):

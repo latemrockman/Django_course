@@ -23,7 +23,7 @@ def show_all_movie(request):
     print(all_movies)
 
     for movie in all_movies:
-        # movie.save()
+        movie.save()
         print(f'!!save() , {movie.name}, slug - {movie.slug}')
 
 
