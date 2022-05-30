@@ -154,6 +154,7 @@ class MovieAdmin(admin.ModelAdmin):
 
 
 
+
     @admin.action(description='Установиь жанр Комедия')
     def set_comedy(self, request, qs: QuerySet):
         qs.update(genre=Actor.COMEDY)

@@ -7,19 +7,22 @@
 {% block content %}
     <h2>{{actor}}</h2>
 
-    <p>Пол: </p>
-    <p>Возраст:</p>
-    <p>Жанр:</p>
-    <p>Кол-во фильмов:</p>
+    <p>Пол: {{actor.gender}}</p>
+    <p>Возраст: {{actor.age }}</p>
+    <p>Жанр: {{actor.genre }}</p>
+    <p>Кол-во фильмов: {{actor.count_movie }}</p>
 
 <hr>
 
-
     <h3>Список фильмов</h3>
 
+    <ul>
+    {% for movie in actor.movies.all %}
+        <li><a href="{{ movie.get_url }}">{{movie.name}}</a></li>
+    {% endfor%}
+    </ul>
 
-<hr>
-    <h3>Список фильмов</h3>
+
 
 
     <hr>

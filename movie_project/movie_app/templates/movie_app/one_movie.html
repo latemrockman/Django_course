@@ -16,7 +16,7 @@
 
     <ul>
         {% for actor in movie.actors.all %}
-        <li><a href='{{ actor.get_url }}'>{{actor}}</a> ({{actor.age}} лет)</li>
+        <li><a href='{{ actor.get_url }}'>{{actor.full_name}}</a> ({{actor.age}} лет)</li>
         {% endfor %}
     </ul>
 

@@ -83,7 +83,7 @@ class Actor(models.Model):  # таблица с актерами
     genre = models.CharField(max_length=1, choices=GENRE,
                               default=TRILLER)  # колонка ПОЛ, max_length - максимальная длина 1 тк 'F' или 'M', choices - передаем список кортежей с вариантами значений, default - начение по умолчанию МУЖЧИНА
 
-    #actors = models.ManyToManyField(Actor)
+
 
 
 
@@ -127,8 +127,8 @@ class Movie(models.Model):
     budget = models.IntegerField(default=10000000, blank=True, validators=[MinValueValidator(0)])
     currency = models.CharField(max_length=3, choices=CURRENCYL_CHOICES, default=RUB)
     slug = models.SlugField(default='', null=False, db_index=True)
-    director = models.ForeignKey(Director, on_delete=models.CASCADE, null=True)                     # ForeinKey - внешний ключ (связь 1 ко многим)
-    actors = models.ManyToManyField(Actor)
+    director = models.ForeignKey(Director, on_delete=models.CASCADE, null=True, related_name='movies')                     # ForeinKey - внешний ключ (связь 1 ко многим)
+    actors = models.ManyToManyField(Actor, related_name='movies')
 
     def save(self, *args, **kwargs):
         translit_slug = text2translit(self.name)

@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c3df8b65-dbb8-4597-948d-3fd030371de7" name="Changes" comment="# настроил поля и фильтры в админке для актёров">
+    <list default="true" id="c3df8b65-dbb8-4597-948d-3fd030371de7" name="Changes" comment="# 60 получение связанных объектов (в Movie связь с actors и director + на странице фильма вывел кто режисер и его данные и всех актеров кто снимался с их данными)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/movie_app/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/movie_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/movie_app/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/movie_app/templates/movie_app/one_actor.html" beforeDir="false" afterPath="$PROJECT_DIR$/movie_app/templates/movie_app/one_actor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie_app/templates/movie_app/one_director.html" beforeDir="false" afterPath="$PROJECT_DIR$/movie_app/templates/movie_app/one_director.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/movie_app/templates/movie_app/one_movie.html" beforeDir="false" afterPath="$PROJECT_DIR$/movie_app/templates/movie_app/one_movie.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -357,7 +359,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653921565692</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="# 60 получение связанных объектов (в Movie связь с actors и director + на странице фильма вывел кто режисер и его данные и всех актеров кто снимался с их данными)">
+      <created>1653935707530</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1653935707530</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -372,7 +381,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="# 40 Методы и модели" />
     <MESSAGE value="# 41 SLUG поле" />
     <MESSAGE value="# 42 ортировка QuerySet" />
     <MESSAGE value="# 43 функции агрегации" />
@@ -397,6 +405,7 @@
     <MESSAGE value="# установил везде переходы по ссылкам через get_url, поправил слаги" />
     <MESSAGE value="# настроил поля и фильтры в админке для режисеров" />
     <MESSAGE value="# настроил поля и фильтры в админке для актёров" />
-    <option name="LAST_COMMIT_MESSAGE" value="# настроил поля и фильтры в админке для актёров" />
+    <MESSAGE value="# 60 получение связанных объектов (в Movie связь с actors и director + на странице фильма вывел кто режисер и его данные и всех актеров кто снимался с их данными)" />
+    <option name="LAST_COMMIT_MESSAGE" value="# 60 получение связанных объектов (в Movie связь с actors и director + на странице фильма вывел кто режисер и его данные и всех актеров кто снимался с их данными)" />
   </component>
 </project>

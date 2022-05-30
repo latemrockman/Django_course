@@ -6,7 +6,18 @@
 
 {% block content %}
     <h2>{{director}}</h2>
+    <p>Возраст - {{director.age}} лет</p>
+    <p>e-mail - {{director.director_email}}</p>
+    <p>Страна - {{director.country}}</p>
+<br>
     <h3>Все фильмы этого режисёра</h3>
+
+    <ul>
+        {% for movie in director.movies.all %}
+            <li><a href="{{ movie.get_url }}">{{movie.name}}</a> - рейтинг {{movie.rating}} %</li>
+        {% endfor %}
+
+    </ul>
 
 
     <hr>
