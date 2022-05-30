@@ -40,9 +40,16 @@ class Actor(models.Model):  # таблица с актерами
     last_name = models.CharField(max_length=100)
     gender = models.CharField(max_length=1, choices=GENDERS,
                               default=MALE)  # колонка ПОЛ, max_length - максимальная длина 1 тк 'F' или 'M', choices - передаем список кортежей с вариантами значений, default - начение по умолчанию МУЖЧИНА
+    slug = models.SlugField(default='', null=False, db_index=True)
 
     def full_name(self):
         return f'{self.first_name} {self.last_name}'
+
+    def save(self, *args, **kwargs):
+        translit_slug = text2translit(self.full_name())
+        self.slug = slugify(translit_slug)
+        super(Actor, self).save(*args, **kwargs)
+
 
     def __str__(self):
         if self.gender == self.MALE:  # если gender == MALE, обращаемся через self.
@@ -78,7 +85,7 @@ class Movie(models.Model):
 
     def save(self, *args, **kwargs):
         translit_slug = text2translit(self.name)
-        self.slug = slugify(translit_slug, allow_unicode=True)
+        self.slug = slugify(translit_slug)
         super(Movie, self).save(*args, **kwargs)
 
     def get_url(self):
