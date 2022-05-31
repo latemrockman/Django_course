@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c3df8b65-dbb8-4597-948d-3fd030371de7" name="Changes" comment="# небольшой рефакторинг html страниц">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movie_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/movie_app/models.py" afterDir="false" />
-    </list>
+    <list default="true" id="c3df8b65-dbb8-4597-948d-3fd030371de7" name="Changes" comment="# 61 создание записей в коде с полями ForeignKey и MoneyToMany" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -376,7 +372,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653940395560</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="# 61 создание записей в коде с полями ForeignKey и MoneyToMany">
+      <created>1653994435688</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1653994435688</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -391,7 +394,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="# 43 функции агрегации" />
     <MESSAGE value="# 44 Django Debug Toolbar" />
     <MESSAGE value="# 45 Вычисляемые поля с annotate" />
     <MESSAGE value="# 49 Админка Django" />
@@ -416,6 +418,7 @@
     <MESSAGE value="# 60 получение связанных объектов (в Movie связь с actors и director + на странице фильма вывел кто режисер и его данные и всех актеров кто снимался с их данными)" />
     <MESSAGE value="# 60 вывод списка фильмов на странице актера и режисера" />
     <MESSAGE value="# небольшой рефакторинг html страниц" />
-    <option name="LAST_COMMIT_MESSAGE" value="# небольшой рефакторинг html страниц" />
+    <MESSAGE value="# 61 создание записей в коде с полями ForeignKey и MoneyToMany" />
+    <option name="LAST_COMMIT_MESSAGE" value="# 61 создание записей в коде с полями ForeignKey и MoneyToMany" />
   </component>
 </project>
