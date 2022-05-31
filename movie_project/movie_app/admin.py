@@ -80,12 +80,13 @@ class SkillFilter(admin.SimpleListFilter):
 
 @admin.register(DressingRoom)
 class DressingRoomAdmin(admin.ModelAdmin):
-    list_display = ['floor', 'number', 'actor']
+    list_display = ['floor', 'number', 'actor', 'director']
+    fields = ['floor', 'number']
 
 
 @admin.register(Director)
 class MovieAdmin(admin.ModelAdmin):
-    list_display = ['full_name', 'age', 'old_status', 'director_email', 'country', 'slug']
+    list_display = ['full_name', 'age', 'old_status', 'director_email', 'country', 'slug', 'dressing']
     list_editable = ['director_email', 'country', 'age']
     ordering = ['first_name']
     list_per_page = 15
@@ -93,7 +94,7 @@ class MovieAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('last_name', 'first_name', )}
     search_fields = ['first_name__endswith', 'last_name__startswith']
     list_filter = ['first_name', 'country', OldStatusFilter]
-    fields = ['first_name', 'last_name', 'director_email', 'country', 'slug']
+    fields = ['first_name', 'last_name', 'director_email', 'country', 'slug', 'dressing']
     #readonly_fields = ['']
 
 

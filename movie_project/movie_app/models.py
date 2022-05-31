@@ -46,6 +46,7 @@ class Director(models.Model):
     age = models.IntegerField(default=30, null=False, validators=[MinValueValidator(1), MaxValueValidator(150)])
 
     #films = models.ManyToManyField(Movie)
+    dressing = models.OneToOneField(DressingRoom, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'

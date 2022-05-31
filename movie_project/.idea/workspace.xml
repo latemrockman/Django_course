@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c3df8b65-dbb8-4597-948d-3fd030371de7" name="Changes" comment="# 61 создание записей в коде с полями ForeignKey и MoneyToMany">
+    <list default="true" id="c3df8b65-dbb8-4597-948d-3fd030371de7" name="Changes" comment="# 62 Связи один к одному (OneToOneField)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/movie_app/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/movie_app/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/movie_app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/movie_app/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movie_app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/movie_app/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -391,7 +392,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653994491555</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="# 62 Связи один к одному (OneToOneField)">
+      <created>1654016139601</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1654016139601</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -406,7 +414,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="# 44 Django Debug Toolbar" />
     <MESSAGE value="# 45 Вычисляемые поля с annotate" />
     <MESSAGE value="# 49 Админка Django" />
     <MESSAGE value="# 50 Вычисляемое поле" />
@@ -431,6 +438,7 @@
     <MESSAGE value="# 60 вывод списка фильмов на странице актера и режисера" />
     <MESSAGE value="# небольшой рефакторинг html страниц" />
     <MESSAGE value="# 61 создание записей в коде с полями ForeignKey и MoneyToMany" />
-    <option name="LAST_COMMIT_MESSAGE" value="# 61 создание записей в коде с полями ForeignKey и MoneyToMany" />
+    <MESSAGE value="# 62 Связи один к одному (OneToOneField)" />
+    <option name="LAST_COMMIT_MESSAGE" value="# 62 Связи один к одному (OneToOneField)" />
   </component>
 </project>

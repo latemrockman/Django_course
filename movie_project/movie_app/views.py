@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.db.models import F, Sum, Max, Min, Count, Avg, Value
 
 # Create your views here.
-from .models import Movie, Actor, Director
+from .models import Movie, Actor, Director, DressingRoom
 
 
 def show_all_movie(request):
@@ -25,6 +25,9 @@ def show_all_movie(request):
     for movie in all_movies:
         movie.save()
         print(f'!!save() , {movie.name}, slug - {movie.slug}')
+
+
+
 
 
 
