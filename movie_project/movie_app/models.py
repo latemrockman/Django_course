@@ -8,6 +8,16 @@ from . translit import text2translit
 
 # Create your models here.
 
+
+class DressingRoom(models.Model):
+    floor = models.IntegerField()
+    number = models.IntegerField()
+
+
+    def __str__(self):
+        return f'{self.floor} этаж - {self.number} комната'
+
+
 class Director(models.Model):
 
     RU = 'RU'
@@ -84,7 +94,7 @@ class Actor(models.Model):  # таблица с актерами
                               default=TRILLER)  # колонка ПОЛ, max_length - максимальная длина 1 тк 'F' или 'M', choices - передаем список кортежей с вариантами значений, default - начение по умолчанию МУЖЧИНА
 
 
-
+    dressing = models.OneToOneField(DressingRoom, on_delete=models.SET_NULL, null=True, blank=True)
 
 
     def full_name(self):
@@ -142,5 +152,8 @@ class Movie(models.Model):
 
     def __str__(self):
         return f'{self.name} - {self.rating}%'
+
+
+
 
 # from movie_app.models import Movie

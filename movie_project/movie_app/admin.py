@@ -1,12 +1,12 @@
 from django.contrib import admin, messages
-from .models import Movie, Director, Actor
+from .models import Movie, Director, Actor, DressingRoom
 from django.db.models import QuerySet
 
 
 
 # Register your models here.
 
-#admin.site.register(Director)
+#admin.site.register(DressingRoom)
 
 class OldStatusFilter(admin.SimpleListFilter):
     title = 'Фильтрация по возрастному статусу'
@@ -78,6 +78,11 @@ class SkillFilter(admin.SimpleListFilter):
             return queryset.filter(count_movie__gte=10)
 
 
+@admin.register(DressingRoom)
+class DressingRoomAdmin(admin.ModelAdmin):
+    list_display = ['floor', 'number', 'actor']
+
+
 @admin.register(Director)
 class MovieAdmin(admin.ModelAdmin):
     list_display = ['full_name', 'age', 'old_status', 'director_email', 'country', 'slug']
@@ -138,7 +143,7 @@ class MovieAdmin(admin.ModelAdmin):
 
 @admin.register(Actor)
 class MovieAdmin(admin.ModelAdmin):
-    list_display = ['full_name', 'genre', 'gender', 'age', 'old_status', 'count_movie', 'slug']
+    list_display = ['full_name', 'genre', 'gender', 'age', 'old_status', 'count_movie', 'slug', 'dressing']
     list_editable = ['age', 'genre', 'count_movie']
     ordering = ['first_name']
     list_per_page = 15
