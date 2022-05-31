@@ -127,8 +127,9 @@ class Movie(models.Model):
     budget = models.IntegerField(default=10000000, blank=True, validators=[MinValueValidator(0)])
     currency = models.CharField(max_length=3, choices=CURRENCYL_CHOICES, default=RUB)
     slug = models.SlugField(default='', null=False, db_index=True)
+
     director = models.ForeignKey(Director, on_delete=models.CASCADE, null=True, related_name='movies')                     # ForeinKey - внешний ключ (связь 1 ко многим)
-    actors = models.ManyToManyField(Actor, related_name='movies')
+    actors = models.ManyToManyField(Actor, related_name='movies')                                                          # многие ко многим
 
     def save(self, *args, **kwargs):
         translit_slug = text2translit(self.name)
