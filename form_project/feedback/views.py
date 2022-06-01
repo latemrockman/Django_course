@@ -4,4 +4,9 @@ from django.shortcuts import render
 
 
 def index(request):
+
+    return render(request, 'feedback/feedback.html', {})
+
+
+def hello(request):
     return render(request, 'feedback/feedback.html', {})

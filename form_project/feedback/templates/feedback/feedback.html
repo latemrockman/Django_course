@@ -8,7 +8,9 @@
 <h1>Оставьте отзыв</h1>
 
 
-<form action="">
+<form action="/" method="post">
+    {% csrf_token %}
+
     <label for="name_id">Имя:</label>
     <input type="text" id="name_id" name="name">
     <br><br>
