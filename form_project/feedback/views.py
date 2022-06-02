@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .forms import FeedbackForm
+from .models import Feedback
 
 # Create your views here.
 
@@ -15,6 +16,16 @@ def index(request):
 
         if form.is_valid():
             all_data = form.cleaned_data                    # возвращает словарь с данными из формы (работает только после form.is_valid())
+
+            feed = Feedback(
+                name=all_data['name'],
+                surname=all_data['surname'],
+                feedback=all_data['feedback'],
+                rating=all_data['rating']
+            )
+            feed.save()
+
+
             return HttpResponseRedirect('/done')
 
     else:                                                   # если нет POST запроса
