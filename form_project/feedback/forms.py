@@ -14,7 +14,7 @@ class FeedbackForm(forms.Form):                             # обязатель
                            error_messages=messages)        # стандартные сообщения об ошибке можно заменить, принимает словарь
 
     surname = forms.CharField(label="Фамилия")
-    rating = forms.IntegerField(label='Рейтинг', min_value=1, max_value=100)
+    rating = forms.IntegerField(label='Рейтинг', min_value=1, max_value=100, help_text="Задайте райтинг", disabled=False, show_hidden_initial=False)
 
 
     atrib = {
