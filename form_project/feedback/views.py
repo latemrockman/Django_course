@@ -6,17 +6,20 @@ from .forms import FeedbackForm
 
 
 def index(request):
-    if request.method == "POST":
-        form = FeedbackForm(request.POST)
+    if request.method == "POST":                            # если будет POST запрос,
+        form = FeedbackForm(request.POST)                   # то мы создаем экземпляр формы при помощи данных из POST запроса
 
-        name = request.POST['name']                         # получить данные через request.POST
-        surname = request.POST['surname']
-        feedback = request.POST['feedback']
+        #name = request.POST['name']
+        #surname = request.POST['surname']
+        #feedback = request.POST['feedback']
 
         if form.is_valid():
             all_data = form.cleaned_data                    # возвращает словарь с данными из формы (работает только после form.is_valid())
             return HttpResponseRedirect('/done')
-    form = FeedbackForm()
+
+    else:                                                   # если нет POST запроса
+        form = FeedbackForm()                               # то мы создаем экзепляр пустой формы
+
 
     return render(request, 'feedback/feedback.html', context={'form': form})
 
