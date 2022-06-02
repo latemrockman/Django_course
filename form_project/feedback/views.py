@@ -15,15 +15,7 @@ def index(request):
         #feedback = request.POST['feedback']
 
         if form.is_valid():
-            all_data = form.cleaned_data                    # возвращает словарь с данными из формы (работает только после form.is_valid())
-
-            feed = Feedback(
-                name=all_data['name'],
-                surname=all_data['surname'],
-                feedback=all_data['feedback'],
-                rating=all_data['rating']
-            )
-            feed.save()
+            form.save()
 
 
             return HttpResponseRedirect('/done')
