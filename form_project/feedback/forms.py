@@ -30,8 +30,8 @@ from .models import Feedback
 class FeedbackForm(forms.ModelForm):                                        # наследуем от forms.ModelForm
     class Meta:                                                             # добавляем класс Meta
         model = Feedback                                                    # указываем Модель на основе которой делаем форму
-        fields = ['surname', 'rating']                              # перечисляем поля, которые нужны
-        #fields = '__all__'                                                  # выбираем все поля
+        #fields = ['surname', 'rating']                              # перечисляем поля, которые нужны
+        fields = '__all__'                                                  # выбираем все поля
         #exclude = ['feedback']                                                # перечисляем поля, которые нужно исключить
 
         labels = {                                                          # в labels перечисляем какие подписи будут к полям ввода
@@ -58,5 +58,7 @@ class FeedbackForm(forms.ModelForm):                                        # н
                 'required': 'поле не должно быть пустым!!!'
             }
         }
+
+
 
 

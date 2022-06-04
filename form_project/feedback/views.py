@@ -27,6 +27,23 @@ def index(request):
     return render(request, 'feedback/feedback.html', context={'form': form})
 
 
+
+def update_feedback(request, id_feedback):
+    feed = Feedback.objects.get(id=id_feedback)
+
+    if request.method == "POST":                            # если будет POST запрос,
+        form = FeedbackForm(request.POST, instance=feed)  # то мы создаем экзепляр пустой формы
+
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(f'/{id_feedback}')
+    else:
+        form = FeedbackForm(instance=feed)  # то мы создаем экзепляр пустой формы
+
+    return render(request, 'feedback/feedback.html', context={'form': form})
+
+
+
 def done(request):
     return render(request, 'feedback/done.html', {})
 
